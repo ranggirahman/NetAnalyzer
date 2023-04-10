@@ -9,3 +9,6 @@ Network Refresher Tools
 - Winshock Reset
 - Ping Test
 - Speed Test
+
+## Upcoming Feature
+- Unblock indonesia region website (reddit etc)
