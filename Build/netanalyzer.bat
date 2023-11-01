@@ -15,6 +15,7 @@ echo                           Domain Name Server    [-]
 echo                           Internet Protocol     [-]
 echo                           Windows Shockets API  [-]
 echo                           Hosts File            [-]
+echo                           Adware Cleaner        [-]
 echo                           Ping Test             [-]
 echo                           Speed Test            [-]                          
 echo.
@@ -46,6 +47,7 @@ echo                           Domain Name Server    [Flush]
 echo                           Internet Protocol     [-]
 echo                           Windows Shockets API  [-]
 echo                           Hosts File            [-]
+echo                           Adware Cleaner        [-]
 echo                           Ping Test             [-]
 echo                           Speed Test            [-]                              
 echo.
@@ -61,6 +63,7 @@ echo                           Domain Name Server    [Register]
 echo                           Internet Protocol     [-]
 echo                           Windows Shockets API  [-]
 echo                           Hosts File            [-]
+echo                           Adware Cleaner        [-]
 echo                           Ping Test             [-]
 echo                           Speed Test            [-]                              
 echo.
@@ -81,6 +84,7 @@ echo                           Domain Name Server    [Done]
 echo                           Internet Protocol     [Release]
 echo                           Windows Shockets API  [-]
 echo                           Hosts File            [-]
+echo                           Adware Cleaner        [-]
 echo                           Ping Test             [-]
 echo                           Speed Test            [-]                           
 echo.
@@ -96,6 +100,7 @@ echo                           Domain Name Server    [Done]
 echo                           Internet Protocol     [Renew]
 echo                           Windows Shockets API  [-]
 echo                           Hosts File            [-]
+echo                           Adware Cleaner        [-]
 echo                           Ping Test             [-]
 echo                           Speed Test            [-]                            
 echo.
@@ -116,11 +121,17 @@ echo                           Domain Name Server    [Done]
 echo                           Internet Protocol     [Done]
 echo                           Windows Shockets API  [Reset]
 echo                           Hosts File            [-]
+echo                           Adware Cleaner        [-]
 echo                           Ping Test             [-]
 echo                           Speed Test            [-]                             
 echo.
 echo ________________________________________________________________________________
 netsh winsock reset >> log.txt
+
+( 
+echo ________________________________________________________________________________
+echo Host File Issue :
+) >> log.txt 
 
 cls
 echo.
@@ -131,11 +142,34 @@ echo                           Domain Name Server    [Done]
 echo                           Internet Protocol     [Done]
 echo                           Windows Shockets API  [Done]
 echo                           Hosts File            [Update]
+echo                           Adware Cleaner        [-]
 echo                           Ping Test             [-]
 echo                           Speed Test            [-]                             
 echo.
 echo ________________________________________________________________________________
 powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%SystemRoot%\System32\Drivers\etc\hosts')" >> log.txt
+
+( 
+echo ________________________________________________________________________________
+echo Adware Cleaner Result :
+) >> log.txt 
+
+cls
+echo.
+echo                           %header%
+echo ________________________________________________________________________________
+echo.
+echo                           Domain Name Server    [Done]
+echo                           Internet Protocol     [Done]
+echo                           Windows Shockets API  [Done]
+echo                           Hosts File            [Done]
+echo                           Adware Cleaner        [Scan]
+echo                           Ping Test             [-]
+echo                           Speed Test            [-]                             
+echo.
+echo ________________________________________________________________________________
+bin\adwcleaner.exe /eula
+bin\adwcleaner.exe /clean /noreboot >> log.txt
 
 ( 
 echo ________________________________________________________________________________
@@ -151,6 +185,7 @@ echo                           Domain Name Server    [Done]
 echo                           Internet Protocol     [Done]
 echo                           Windows Shockets API  [Done]
 echo                           Hosts File            [Done]
+echo                           Adware Cleaner        [Done]
 echo                           Ping Test             [Sent]
 echo                           Speed Test            [-]                             
 echo.
@@ -171,6 +206,7 @@ echo                           Domain Name Server    [Done]
 echo                           Internet Protocol     [Done]
 echo                           Windows Shockets API  [Done]
 echo                           Hosts File            [Done]
+echo                           Adware Cleaner        [Done]
 echo                           Ping Test             [Done]
 echo                           Speed Test            [Running]                        
 echo.
@@ -190,6 +226,7 @@ echo                           Domain Name Server    [Done]
 echo                           Internet Protocol     [Done]
 echo                           Windows Shockets API  [Done]
 echo                           Hosts File            [Done]
+echo                           Adware Cleaner        [Done]
 echo                           Ping Test             [Done]
 echo                           Speed Test            [Done]                             
 echo.
