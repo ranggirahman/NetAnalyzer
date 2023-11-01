@@ -1,5 +1,5 @@
 Net Analyzer 1.5 - https://github.com/ranggirahman 
-Time : 17:45, 01-Nov-23
+Time : 17:53, 01-Nov-23
 ________________________________________________________________________________
 Hardware Info :
 
@@ -27,10 +27,10 @@ System Locale:             en-us;English (United States)
 Input Locale:              en-us;English (United States)
 Time Zone:                 (UTC+07:00) Bangkok, Hanoi, Jakarta
 Total Physical Memory:     16,074 MB
-Available Physical Memory: 9,735 MB
+Available Physical Memory: 9,691 MB
 Virtual Memory: Max Size:  17,098 MB
-Virtual Memory: Available: 11,070 MB
-Virtual Memory: In Use:    6,028 MB
+Virtual Memory: Available: 10,877 MB
+Virtual Memory: In Use:    6,221 MB
 Page File Location(s):     C:\pagefile.sys
 Domain:                    WORKGROUP
 Logon Server:              \\EXBOOK
@@ -151,15 +151,15 @@ ________________________________________________________________________________
 Ping Result :
 
 Pinging 8.8.8.8 with 32 bytes of data:
-Reply from 8.8.8.8: bytes=32 time=32ms TTL=113
-Reply from 8.8.8.8: bytes=32 time=19ms TTL=113
-Reply from 8.8.8.8: bytes=32 time=21ms TTL=113
 Reply from 8.8.8.8: bytes=32 time=18ms TTL=113
+Reply from 8.8.8.8: bytes=32 time=19ms TTL=113
+Reply from 8.8.8.8: bytes=32 time=18ms TTL=113
+Reply from 8.8.8.8: bytes=32 time=20ms TTL=113
 
 Ping statistics for 8.8.8.8:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
-    Minimum = 18ms, Maximum = 32ms, Average = 22ms
+    Minimum = 18ms, Maximum = 20ms, Average = 18ms
 ________________________________________________________________________________
 Speedtest Result :
 
@@ -167,9 +167,9 @@ Speedtest Result :
 
      Server: Telkomsel - East Jakarta (id = 35143)
         ISP: PT Telkom Indonesia
-    Latency:    19.73 ms   (0.30 ms jitter)
-   Download:    36.71 Mbps (data used: 67.5 MB)                               
-     Upload:     9.76 Mbps (data used: 18.2 MB)                               
+    Latency:    19.64 ms   (0.81 ms jitter)
+   Download:    36.92 Mbps (data used: 67.4 MB)                               
+     Upload:     9.78 Mbps (data used: 12.7 MB)                               
 Packet Loss: Not available.
- Result URL: https://www.speedtest.net/result/c/dc8c1db9-bd20-442b-9b20-0f2408d5de80
+ Result URL: https://www.speedtest.net/result/c/360e641a-f741-410d-837b-bc0a54c2f392
 ________________________________________________________________________________

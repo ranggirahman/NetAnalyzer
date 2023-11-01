@@ -2,15 +2,13 @@
 if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit /b)
 cd /d %~dp0
 
-attrib -h "bin\completed.vbs"
-
 set header=Net Analyzer 1.5 - https://github.com/ranggirahman
 title %header%
 set server=8.8.8.8
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [-]
@@ -40,8 +38,8 @@ echo Domain Name Server :
 ) >> log.txt 
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Flush]
@@ -55,8 +53,8 @@ echo ___________________________________________________________________________
 ipconfig /flushdns >> log.txt
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Register]
@@ -75,8 +73,8 @@ echo Internet Protocol :
 ) >> log.txt
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Done]
@@ -90,8 +88,8 @@ echo ___________________________________________________________________________
 ipconfig /release >> log.txt
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Done]
@@ -110,8 +108,8 @@ echo Windows Shockets API :
 ) >> log.txt 
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Done]
@@ -125,8 +123,8 @@ echo ___________________________________________________________________________
 netsh winsock reset >> log.txt
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Done]
@@ -137,7 +135,7 @@ echo                           Ping Test             [-]
 echo                           Speed Test            [-]                             
 echo.
 echo ________________________________________________________________________________
-powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%SystemRoot%\System32\Drivers\etc\hosts')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%SystemRoot%\System32\Drivers\etc\hosts')" >> log.txt
 
 ( 
 echo ________________________________________________________________________________
@@ -145,8 +143,8 @@ echo Ping Result :
 ) >> log.txt 
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Done]
@@ -165,8 +163,8 @@ echo Speedtest Result :
 ) >> log.txt 
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Done]
@@ -184,8 +182,8 @@ echo ___________________________________________________________________________
 ) >> log.txt 
 
 cls
-Echo.
-Echo                           %header%
+echo.
+echo                           %header%
 echo ________________________________________________________________________________
 echo.
 echo                           Domain Name Server    [Done]
@@ -201,9 +199,6 @@ echo                           Report Generated in "log.txt"
 echo                           Please Restart Your PC
 echo                           Press "Enter" to Exit
 
-echo.>"bin\completed.vbs" lol=msgbox ("All Process is Complete",64,"Net Analyzer")
-attrib +h "bin\completed.vbs"
-bin\completed.vbs
-
+bin\msg.vbs
 
 pause >nul 
