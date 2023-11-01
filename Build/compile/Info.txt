@@ -1,0 +1,9 @@
+Title : Net Analyzer 1.5
+[v] Run as Admin
+
+Product Name : Net Analyzer 
+Description : Network Tools
+Company : https://github.com/ranggirahman
+Copyright : @2023
+
+File Name : Net Analyzer 1.5
