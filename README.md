@@ -1,7 +1,8 @@
 # NetAnalyzer
-Network Refresher Tools
+Network Tools
 
 ## Feature
+- Get Hardware Info
 - Flush DNS
 - Register DNS
 - IP Release
@@ -9,6 +10,8 @@ Network Refresher Tools
 - Winshock Reset
 - Ping Test
 - Speed Test
+- Unblock indonesia region website
 
 ## Upcoming Feature
-- Unblock indonesia region website (reddit etc)
+- ...
+
