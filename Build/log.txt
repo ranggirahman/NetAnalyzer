@@ -1,107 +1,57 @@
 Net Analyzer 1.5 - https://github.com/ranggirahman 
-Time : 15:05, 01-Nov-23
+Time : 17:45, 01-Nov-23
 ________________________________________________________________________________
 Hardware Info :
 
-Host Name:                 CLAYS
-OS Name:                   Microsoft Windows 10 Pro
-OS Version:                10.0.19045 N/A Build 19045
+Host Name:                 EXBOOK
+OS Name:                   Microsoft Windows 11 Enterprise
+OS Version:                10.0.22621 N/A Build 22621
 OS Manufacturer:           Microsoft Corporation
 OS Configuration:          Standalone Workstation
 OS Build Type:             Multiprocessor Free
-Registered Owner:          Clays
+Registered Owner:          Windows User
 Registered Organization:   
-Product ID:                00331-10000-00001-AA138
-Original Install Date:     11-Jun-20, 20:01:07
-System Boot Time:          01-Nov-23, 06:02:30
-System Manufacturer:       MSI
-System Model:              MS-7A65
+Product ID:                00330-80000-00000-AA261
+Original Install Date:     25-Sep-23, 23:11:50
+System Boot Time:          01-Nov-23, 08:16:39
+System Manufacturer:       ASUSTeK COMPUTER INC.
+System Model:              ASUS EXPERTBOOK B1400CEAEY_B1400CEAE
 System Type:               x64-based PC
 Processor(s):              1 Processor(s) Installed.
-                           [01]: Intel64 Family 6 Model 158 Stepping 9 GenuineIntel ~3000 Mhz
-BIOS Version:              American Megatrends Inc. 1.80, 24-Jul-18
-Windows Directory:         C:\WINDOWS
-System Directory:          C:\WINDOWS\system32
-Boot Device:               \Device\HarddiskVolume2
+                           [01]: Intel64 Family 6 Model 140 Stepping 1 GenuineIntel ~2419 Mhz
+BIOS Version:              ASUSTeK COMPUTER INC. B1400CEAEY.321, 22-Dec-22
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
 System Locale:             en-us;English (United States)
 Input Locale:              en-us;English (United States)
 Time Zone:                 (UTC+07:00) Bangkok, Hanoi, Jakarta
-Total Physical Memory:     16,349 MB
-Available Physical Memory: 9,642 MB
-Virtual Memory: Max Size:  19,421 MB
-Virtual Memory: Available: 10,419 MB
-Virtual Memory: In Use:    9,002 MB
+Total Physical Memory:     16,074 MB
+Available Physical Memory: 9,735 MB
+Virtual Memory: Max Size:  17,098 MB
+Virtual Memory: Available: 11,070 MB
+Virtual Memory: In Use:    6,028 MB
 Page File Location(s):     C:\pagefile.sys
 Domain:                    WORKGROUP
-Logon Server:              \\CLAYS
-Hotfix(s):                 42 Hotfix(s) Installed.
-                           [01]: KB5031816
-                           [02]: KB5028853
-                           [03]: KB4560366
-                           [04]: KB4561600
-                           [05]: KB4562830
-                           [06]: KB4566785
-                           [07]: KB4570334
-                           [08]: KB4577266
-                           [09]: KB4577586
-                           [10]: KB4580325
-                           [11]: KB4586864
-                           [12]: KB4589212
-                           [13]: KB4593175
-                           [14]: KB4598481
-                           [15]: KB5000736
-                           [16]: KB5003791
-                           [17]: KB5011048
-                           [18]: KB5012170
-                           [19]: KB5015684
-                           [20]: KB5031445
-                           [21]: KB5006753
-                           [22]: KB5007273
-                           [23]: KB5011352
-                           [24]: KB5011651
-                           [25]: KB5014032
-                           [26]: KB5014035
-                           [27]: KB5014671
-                           [28]: KB5015895
-                           [29]: KB5016705
-                           [30]: KB5018506
-                           [31]: KB5020372
-                           [32]: KB5022924
-                           [33]: KB5023794
-                           [34]: KB5025315
-                           [35]: KB5026879
-                           [36]: KB5028318
-                           [37]: KB5028380
-                           [38]: KB5029709
-                           [39]: KB5030506
-                           [40]: KB5031539
-                           [41]: KB5031540
-                           [42]: KB5005699
-Network Card(s):           3 NIC(s) Installed.
-                           [01]: VMware Virtual Ethernet Adapter for VMnet1
-                                 Connection Name: Ethernet 3
-                                 DHCP Enabled:    Yes
-                                 DHCP Server:     192.168.182.254
-                                 IP address(es)
-                                 [01]: 192.168.182.1
-                                 [02]: fe80::540:8309:bfcf:fc99
-                           [02]: VMware Virtual Ethernet Adapter for VMnet8
-                                 Connection Name: Ethernet 4
-                                 DHCP Enabled:    Yes
-                                 DHCP Server:     192.168.206.254
-                                 IP address(es)
-                                 [01]: 192.168.206.1
-                                 [02]: fe80::d845:1ef4:5762:125b
-                           [03]: Intel(R) Ethernet Connection (2) I219-V
-                                 Connection Name: Ethernet
+Logon Server:              \\EXBOOK
+Hotfix(s):                 3 Hotfix(s) Installed.
+                           [01]: KB5030651
+                           [02]: KB5031455
+                           [03]: KB5031893
+Network Card(s):           2 NIC(s) Installed.
+                           [01]: Intel(R) Wi-Fi 6 AX201 160MHz
+                                 Connection Name: Wi-Fi
                                  DHCP Enabled:    Yes
                                  DHCP Server:     192.168.100.1
                                  IP address(es)
-                                 [01]: 192.168.100.4
-Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
-                           Virtualization Enabled In Firmware: Yes
-                           Second Level Address Translation: Yes
-                           Data Execution Prevention Available: Yes
+                                 [01]: 192.168.100.20
+                                 [02]: fe80::8bc7:79be:1a4f:fb92
+                                 [03]: 2001:448a:2074:2a1d:98b3:b942:be67:35ae
+                                 [04]: 2001:448a:2074:2a1d:6280:689c:c1cb:de55
+                           [02]: Intel(R) Ethernet Connection (13) I219-V
+                                 Connection Name: Ethernet
+                                 Status:          Media disconnected
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.
 ________________________________________________________________________________
 Domain Name Server :
 
@@ -117,48 +67,79 @@ Internet Protocol :
 
 Windows IP Configuration
 
+No operation can be performed on Ethernet while it has its media disconnected.
+No operation can be performed on Local Area Connection* 1 while it has its media disconnected.
+No operation can be performed on Local Area Connection* 2 while it has its media disconnected.
 
 Ethernet adapter Ethernet:
 
+   Media State . . . . . . . . . . . : Media disconnected
    Connection-specific DNS Suffix  . : 
-   Default Gateway . . . . . . . . . : 
 
-Ethernet adapter Ethernet 3:
+Wireless LAN adapter Local Area Connection* 1:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Local Area Connection* 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Wi-Fi:
 
    Connection-specific DNS Suffix  . : 
-   Link-local IPv6 Address . . . . . : fe80::540:8309:bfcf:fc99%12
-   Default Gateway . . . . . . . . . : 
+   IPv6 Address. . . . . . . . . . . : 2001:448a:2074:2a1d:6280:689c:c1cb:de55
+   Temporary IPv6 Address. . . . . . : 2001:448a:2074:2a1d:98b3:b942:be67:35ae
+   Link-local IPv6 Address . . . . . : fe80::8bc7:79be:1a4f:fb92%18
+   Default Gateway . . . . . . . . . : fe80::1%18
 
-Ethernet adapter Ethernet 4:
+Ethernet adapter vEthernet (Default Switch):
 
    Connection-specific DNS Suffix  . : 
-   Link-local IPv6 Address . . . . . : fe80::d845:1ef4:5762:125b%3
+   Link-local IPv6 Address . . . . . : fe80::76c6:3c5d:4a77:45cf%25
+   IPv4 Address. . . . . . . . . . . : 172.22.96.1
+   Subnet Mask . . . . . . . . . . . : 255.255.240.0
    Default Gateway . . . . . . . . . : 
 
 Windows IP Configuration
 
+No operation can be performed on Ethernet while it has its media disconnected.
+No operation can be performed on Local Area Connection* 1 while it has its media disconnected.
+No operation can be performed on Local Area Connection* 2 while it has its media disconnected.
 
 Ethernet adapter Ethernet:
 
+   Media State . . . . . . . . . . . : Media disconnected
    Connection-specific DNS Suffix  . : 
-   IPv4 Address. . . . . . . . . . . : 192.168.100.4
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . : 192.168.100.1
 
-Ethernet adapter Ethernet 3:
+Wireless LAN adapter Local Area Connection* 1:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Local Area Connection* 2:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . : 
+
+Wireless LAN adapter Wi-Fi:
 
    Connection-specific DNS Suffix  . : 
-   Link-local IPv6 Address . . . . . : fe80::540:8309:bfcf:fc99%12
-   IPv4 Address. . . . . . . . . . . : 192.168.182.1
+   IPv6 Address. . . . . . . . . . . : 2001:448a:2074:2a1d:6280:689c:c1cb:de55
+   Temporary IPv6 Address. . . . . . : 2001:448a:2074:2a1d:98b3:b942:be67:35ae
+   Link-local IPv6 Address . . . . . : fe80::8bc7:79be:1a4f:fb92%18
+   IPv4 Address. . . . . . . . . . . : 192.168.100.20
    Subnet Mask . . . . . . . . . . . : 255.255.255.0
-   Default Gateway . . . . . . . . . : 
+   Default Gateway . . . . . . . . . : fe80::1%18
+                                       192.168.100.1
 
-Ethernet adapter Ethernet 4:
+Ethernet adapter vEthernet (Default Switch):
 
    Connection-specific DNS Suffix  . : 
-   Link-local IPv6 Address . . . . . : fe80::d845:1ef4:5762:125b%3
-   IPv4 Address. . . . . . . . . . . : 192.168.206.1
-   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Link-local IPv6 Address . . . . . : fe80::76c6:3c5d:4a77:45cf%25
+   IPv4 Address. . . . . . . . . . . : 172.22.96.1
+   Subnet Mask . . . . . . . . . . . : 255.255.240.0
    Default Gateway . . . . . . . . . : 
 ________________________________________________________________________________
 Windows Shockets API :
@@ -170,15 +151,15 @@ ________________________________________________________________________________
 Ping Result :
 
 Pinging 8.8.8.8 with 32 bytes of data:
-Reply from 8.8.8.8: bytes=32 time=17ms TTL=113
-Reply from 8.8.8.8: bytes=32 time=17ms TTL=113
-Reply from 8.8.8.8: bytes=32 time=17ms TTL=113
-Reply from 8.8.8.8: bytes=32 time=17ms TTL=113
+Reply from 8.8.8.8: bytes=32 time=32ms TTL=113
+Reply from 8.8.8.8: bytes=32 time=19ms TTL=113
+Reply from 8.8.8.8: bytes=32 time=21ms TTL=113
+Reply from 8.8.8.8: bytes=32 time=18ms TTL=113
 
 Ping statistics for 8.8.8.8:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
-    Minimum = 17ms, Maximum = 17ms, Average = 17ms
+    Minimum = 18ms, Maximum = 32ms, Average = 22ms
 ________________________________________________________________________________
 Speedtest Result :
 
@@ -186,9 +167,9 @@ Speedtest Result :
 
      Server: Telkomsel - East Jakarta (id = 35143)
         ISP: PT Telkom Indonesia
-    Latency:     3.92 ms   (0.06 ms jitter)
-   Download:    32.70 Mbps (data used: 52.8 MB)                               
-     Upload:     9.78 Mbps (data used: 15.6 MB)                               
+    Latency:    19.73 ms   (0.30 ms jitter)
+   Download:    36.71 Mbps (data used: 67.5 MB)                               
+     Upload:     9.76 Mbps (data used: 18.2 MB)                               
 Packet Loss: Not available.
- Result URL: https://www.speedtest.net/result/c/dafd3170-fd9b-4326-90f1-86c1daa6a922
+ Result URL: https://www.speedtest.net/result/c/dc8c1db9-bd20-442b-9b20-0f2408d5de80
 ________________________________________________________________________________
