@@ -372,13 +372,13 @@ echo.
 echo   %header%
 echo ________________________________________________________________________________
 echo.
-echo   Hardware Check        [Collect]
-echo   Domain Name Server    [-]
-echo   Internet Protocol     [-]
-echo   Windows Shockets API  [-]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Done]
+echo   Internet Protocol     [Done]
+echo   Windows Shockets API  [Done]
+echo   Hosts File            [Done]
+echo   Adware Cleaner        [Done]
+echo   Connection Test       [Done]                 
 echo.
 echo ________________________________________________________________________________
 echo.
