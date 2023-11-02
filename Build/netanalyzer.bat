@@ -11,16 +11,26 @@ set server=8.8.8.8
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [-]
-echo                           Internet Protocol     [-]
-echo                           Windows Shockets API  [-]
-echo                           Hosts File            [-]
-echo                           Adware Cleaner        [-]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                          
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [-]
+echo   Domain Name Server    [-]
+echo   Internet Protocol     [-]
+echo   Windows Shockets API  [-]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 echo.
@@ -36,6 +46,30 @@ echo ___________________________________________________________________________
 echo Hardware Info :
 ) > log.txt 
 
+cls
+echo.
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
+echo ________________________________________________________________________________
+echo.
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Collect]
+echo   Domain Name Server    [-]
+echo   Internet Protocol     [-]
+echo   Windows Shockets API  [-]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
+echo.
+echo ________________________________________________________________________________
 rem collect hardware information
 systeminfo >> log.txt
 
@@ -46,16 +80,26 @@ echo Domain Name Server :
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Flush]
-echo                           Internet Protocol     [-]
-echo                           Windows Shockets API  [-]
-echo                           Hosts File            [-]
-echo                           Adware Cleaner        [-]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                              
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Flush]
+echo   Internet Protocol     [-]
+echo   Windows Shockets API  [-]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 rem flush domain name server
@@ -63,16 +107,26 @@ ipconfig /flushdns >> log.txt
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Register]
-echo                           Internet Protocol     [-]
-echo                           Windows Shockets API  [-]
-echo                           Hosts File            [-]
-echo                           Adware Cleaner        [-]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                              
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Register]
+echo   Internet Protocol     [-]
+echo   Windows Shockets API  [-]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 rem register new domain name server
@@ -85,16 +139,26 @@ echo Internet Protocol :
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Release]
-echo                           Windows Shockets API  [-]
-echo                           Hosts File            [-]
-echo                           Adware Cleaner        [-]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                           
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Release]
+echo   Internet Protocol     [-]
+echo   Windows Shockets API  [-]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 rem release internet protocol
@@ -102,16 +166,26 @@ ipconfig /release >> log.txt
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Renew]
-echo                           Windows Shockets API  [-]
-echo                           Hosts File            [-]
-echo                           Adware Cleaner        [-]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                            
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Done]
+echo   Internet Protocol     [Renew]
+echo   Windows Shockets API  [-]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 rem renew internet protocol
@@ -124,16 +198,26 @@ echo Windows Shockets API :
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Done]
-echo                           Windows Shockets API  [Reset]
-echo                           Hosts File            [-]
-echo                           Adware Cleaner        [-]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                             
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Done]
+echo   Internet Protocol     [Done]
+echo   Windows Shockets API  [Reset]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 rem run windows shocket reset
@@ -146,16 +230,26 @@ echo Host File Issue :
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Done]
-echo                           Windows Shockets API  [Done]
-echo                           Hosts File            [Update]
-echo                           Adware Cleaner        [-]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                             
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Done]
+echo   Internet Protocol     [Done]
+echo   Windows Shockets API  [Done]
+echo   Hosts File            [Update]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 rem get hosts file and overwrite system hosts file
@@ -168,16 +262,26 @@ echo Adware Cleaner Result :
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Done]
-echo                           Windows Shockets API  [Done]
-echo                           Hosts File            [Done]
-echo                           Adware Cleaner        [Scan]
-echo                           Ping Test             [-]
-echo                           Speed Test            [-]                             
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Done]
+echo   Internet Protocol     [Done]
+echo   Windows Shockets API  [Done]
+echo   Hosts File            [Done]
+echo   Adware Cleaner        [Scan]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 rem accept adware cleaner eula
@@ -192,19 +296,29 @@ echo Ping Result :
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Done]
-echo                           Windows Shockets API  [Done]
-echo                           Hosts File            [Done]
-echo                           Adware Cleaner        [Done]
-echo                           Ping Test             [Sent]
-echo                           Speed Test            [-]                             
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Done]
+echo   Internet Protocol     [Done]
+echo   Windows Shockets API  [Done]
+echo   Hosts File            [Done]
+echo   Adware Cleaner        [Done]
+echo   Connection Test       [Ping Test]                 
 echo.
 echo ________________________________________________________________________________
-rem ping 
+rem test ping 
 ping %server% >> log.txt
 
 ( 
@@ -214,16 +328,26 @@ echo Speedtest Result :
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Done]
-echo                           Windows Shockets API  [Done]
-echo                           Hosts File            [Done]
-echo                           Adware Cleaner        [Done]
-echo                           Ping Test             [Done]
-echo                           Speed Test            [Running]                        
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Done]
+echo   Domain Name Server    [Done]
+echo   Internet Protocol     [Done]
+echo   Windows Shockets API  [Done]
+echo   Hosts File            [Done]
+echo   Adware Cleaner        [Done]
+echo   Connection Test       [Speed Test]                 
 echo.
 echo ________________________________________________________________________________
 rem clean run speedtest and accept license
@@ -235,16 +359,26 @@ echo ___________________________________________________________________________
 
 cls
 echo.
-echo                           %header%
+echo    _   _        _                             _                        
+echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+echo                                                   __/ ^|                
+echo                                                  ^|___/   
 echo ________________________________________________________________________________
 echo.
-echo                           Domain Name Server    [Done]
-echo                           Internet Protocol     [Done]
-echo                           Windows Shockets API  [Done]
-echo                           Hosts File            [Done]
-echo                           Adware Cleaner        [Done]
-echo                           Ping Test             [Done]
-echo                           Speed Test            [Done]                             
+echo   %header%
+echo ________________________________________________________________________________
+echo.
+echo   Hardware Check        [Collect]
+echo   Domain Name Server    [-]
+echo   Internet Protocol     [-]
+echo   Windows Shockets API  [-]
+echo   Hosts File            [-]
+echo   Adware Cleaner        [-]
+echo   Connection Test       [-]                 
 echo.
 echo ________________________________________________________________________________
 echo.
@@ -258,3 +392,4 @@ rem show complete dialog
 bin\msg.vbs
 
 pause >nul 
+exit
