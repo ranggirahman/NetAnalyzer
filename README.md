@@ -10,8 +10,9 @@ Network Tools
 - Winshock Reset
 - Ping Test
 - Speed Test
-- Unblock indonesia region website
+
 
 ## Upcoming Feature
-- ...
+- Unblock indonesia region website
+- Adware Cleaner
 
