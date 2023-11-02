@@ -14,7 +14,6 @@ set wss=-
 set hfs=-
 set acs=-
 set cos=-
-set active=Press "Enter" to Start
 set run=0
 title %header%
 set server=8.8.8.8
@@ -44,9 +43,9 @@ set server=8.8.8.8
   echo.
   echo ________________________________________________________________________________
   echo.
-  echo   %active%
-  echo %run%
+
   if %run% == 0 (
+    echo   Press "Enter" to Start
     pause >nul
     set hws=Collect
     set run=1
@@ -74,6 +73,8 @@ set server=8.8.8.8
   ) else if %run% == 11 (
     goto fdone
   ) else (
+    rem error
+    echo   Error Code 12
     pause
   )                       
 )
@@ -228,7 +229,7 @@ set server=8.8.8.8
 
 :fdone (
   rem clean memory (detect as virus)
-  rem %windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks
+  %windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks
 
   rem show complete dialog
   bin\msg.vbs
