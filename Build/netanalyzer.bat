@@ -25,12 +25,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [-]
-echo   Domain Name Server    [-]
 echo   Internet Protocol     [-]
 echo   Windows Shockets API  [-]
 echo   Hosts File            [-]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 echo.
@@ -62,12 +61,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Collect]
-echo   Domain Name Server    [-]
 echo   Internet Protocol     [-]
 echo   Windows Shockets API  [-]
 echo   Hosts File            [-]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem collect hardware information
@@ -94,12 +92,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Flush]
-echo   Internet Protocol     [-]
+echo   Internet Protocol     [Flush DNS]
 echo   Windows Shockets API  [-]
 echo   Hosts File            [-]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem flush domain name server
@@ -121,12 +118,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Register]
-echo   Internet Protocol     [-]
+echo   Internet Protocol     [Register DNS]
 echo   Windows Shockets API  [-]
 echo   Hosts File            [-]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem register new domain name server
@@ -153,12 +149,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Release]
-echo   Internet Protocol     [-]
+echo   Internet Protocol     [Release]
 echo   Windows Shockets API  [-]
 echo   Hosts File            [-]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem release internet protocol
@@ -180,12 +175,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Done]
 echo   Internet Protocol     [Renew]
 echo   Windows Shockets API  [-]
 echo   Hosts File            [-]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem renew internet protocol
@@ -212,12 +206,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Done]
 echo   Internet Protocol     [Done]
 echo   Windows Shockets API  [Reset]
 echo   Hosts File            [-]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem run windows shocket reset
@@ -244,12 +237,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Done]
 echo   Internet Protocol     [Done]
 echo   Windows Shockets API  [Done]
 echo   Hosts File            [Update]
 echo   Adware Cleaner        [-]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem get hosts file and overwrite system hosts file
@@ -276,12 +268,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Done]
 echo   Internet Protocol     [Done]
 echo   Windows Shockets API  [Done]
 echo   Hosts File            [Done]
 echo   Adware Cleaner        [Scan]
-echo   Connection Test       [-]                 
+echo   Connection            [-]                 
 echo.
 echo ________________________________________________________________________________
 rem accept adware cleaner eula
@@ -310,12 +301,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Done]
 echo   Internet Protocol     [Done]
 echo   Windows Shockets API  [Done]
 echo   Hosts File            [Done]
 echo   Adware Cleaner        [Done]
-echo   Connection Test       [Ping Test]                 
+echo   Connection            [Ping Test]                 
 echo.
 echo ________________________________________________________________________________
 rem test ping 
@@ -342,12 +332,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Done]
 echo   Internet Protocol     [Done]
 echo   Windows Shockets API  [Done]
 echo   Hosts File            [Done]
 echo   Adware Cleaner        [Done]
-echo   Connection Test       [Speed Test]                 
+echo   Connection            [Speed Test]                 
 echo.
 echo ________________________________________________________________________________
 rem clean run speedtest and accept license
@@ -373,12 +362,11 @@ echo   %header%
 echo ________________________________________________________________________________
 echo.
 echo   Hardware Check        [Done]
-echo   Domain Name Server    [Done]
 echo   Internet Protocol     [Done]
 echo   Windows Shockets API  [Done]
 echo   Hosts File            [Done]
 echo   Adware Cleaner        [Done]
-echo   Connection Test       [Done]                 
+echo   Connection            [Done]                 
 echo.
 echo ________________________________________________________________________________
 echo.
@@ -386,8 +374,9 @@ echo                           Report Generated in "log.txt"
 echo                           Please Restart Your PC
 echo                           Press "Enter" to Exit
 
-rem clean memory
-%windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks
+rem clean memory (detect as virus)
+rem %windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks
+
 rem show complete dialog
 bin\msg.vbs
 
