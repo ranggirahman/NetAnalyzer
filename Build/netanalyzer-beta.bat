@@ -4,8 +4,6 @@ if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit /b)
 rem back to original batch directory
 cd /d %~dp0
 
-setlocal ENABLEDELAYEDEXPANSION
-
 rem initial variable
 set header=Net Analyzer 1.5 - https://github.com/ranggirahman
 set hws=-
@@ -162,7 +160,7 @@ set server=8.8.8.8
   rem update log file
   ( 
     echo ________________________________________________________________________________
-    echo Host File Issue :
+    echo Host File :
   ) >> log.txt 
 
   rem get hosts file and overwrite system hosts file
@@ -178,13 +176,11 @@ set server=8.8.8.8
   rem update log file
   ( 
     echo ________________________________________________________________________________
-    echo Adware Cleaner Result :
+    echo Adware Cleaner :
   ) >> log.txt 
 
-  rem accept adware cleaner eula
-  bin\adwcleaner.exe /eula
   rem run adware cleaner with auto clean and dont reboot
-  bin\adwcleaner.exe /clean /noreboot >> log.txt
+  bin\adwcleaner.exe /eula /clean /noreboot >> log.txt
 
   set acs=Done
   set cos=Ping Test
@@ -196,7 +192,7 @@ set server=8.8.8.8
   rem update log file
   ( 
     echo ________________________________________________________________________________
-    echo Ping Result :
+    echo Ping Google :
   ) >> log.txt
 
   rem test ping 
@@ -210,17 +206,11 @@ set server=8.8.8.8
 :fcosspe (
   ( 
     echo ________________________________________________________________________________
-    echo Speedtest Result :
+    echo Speedtest :
   ) >> log.txt 
 
   rem clean run speedtest and accept license
   bin\speedtest.exe --accept-license >> log.txt
-
-  rem end of file
-  ( 
-    echo ________________________________________________________________________________
-    echo End of File.
-  ) >> log.txt 
 
   set cos=Done
   set run=11
@@ -228,11 +218,18 @@ set server=8.8.8.8
 )
 
 :fdone (
-  rem clean memory (detect as virus)
-  %windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks
+  rem update log file (end)
+  ( 
+    echo ________________________________________________________________________________
+    echo End of File.
+  ) >> log.txt 
 
   rem show complete dialog
   bin\msg.vbs
+
+  echo   Report Generated in "log.txt"
+  echo   Please Restart Your PC
+  echo   Press "Enter" to Exit
 
   pause >nul 
   exit
