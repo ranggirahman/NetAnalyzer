@@ -18,7 +18,11 @@ set server=8.8.8.8
 
 rem check connection
 ping %server% -n 1 -w 1000
-if errorlevel 1 (set internet=0) else (set internet=1)
+if errorlevel 1 (
+  set internet=0
+) else (
+  set internet=1
+)
 
 :main (
   cls
@@ -106,6 +110,7 @@ if errorlevel 1 (set internet=0) else (set internet=1)
   ( 
     echo ________________________________________________________________________________
     echo Host File :
+    echo.
   ) >> log.txt
 
   rem backup host file
@@ -121,7 +126,8 @@ if errorlevel 1 (set internet=0) else (set internet=1)
   rem if disconnected
   ) else (
     rem get hosts file and overwrite system hosts file
-    copy %~dp0\bin\host %SystemRoot%\System32\Drivers\etc\hosts
+    copy %~dp0\bin\host\host-patch %SystemRoot%\System32\Drivers\etc\hosts
+
     rem update log file
     echo Updated Successfully >> log.txt
   )
@@ -198,7 +204,7 @@ if errorlevel 1 (set internet=0) else (set internet=1)
   ) >> log.txt 
 
   rem run adware cleaner with auto clean and dont reboot
-  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0 >> log.txt
+  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\bin >> log.txt
 
   set acs=Done
   set cos=Speed Test
