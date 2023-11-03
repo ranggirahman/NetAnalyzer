@@ -16,6 +16,10 @@ set run=0
 title %header%
 set server=8.8.8.8
 
+rem check connection
+ping %server% -n 1 -w 1000
+if errorlevel 1 (set internet=0) else (set internet=1)
+
 :main (
   cls
   echo.
@@ -76,12 +80,6 @@ set server=8.8.8.8
   )                       
 )
 
-:fcoscon (
-  rem check connection
-  ping www.google.nl -n 1 -w 1000
-  if errorlevel 1 (set internet=0) else (set internet=1)
-)
-
 :fhws (
   rem if log exsist delete first
   del log.txt 
@@ -112,9 +110,6 @@ set server=8.8.8.8
 
   rem backup host file
   copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"host %date:/=-% %time::=-%"
-
-  rem check internet first
-  call fcoscon
   
   rem if connected
   if %internet% == 1 (
