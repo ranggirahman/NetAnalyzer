@@ -6,379 +6,239 @@ cd /d %~dp0
 
 rem initial variable
 set header=Net Analyzer 1.5 - https://github.com/ranggirahman
+set hws=-
+set ips=-
+set wss=-
+set hfs=-
+set acs=-
+set cos=-
+set run=0
 title %header%
 set server=8.8.8.8
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [-]
-echo   Internet Protocol     [-]
-echo   Windows Shockets API  [-]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-echo.
-echo                           Press "Enter" to Start
-pause >nul
+:main (
+  cls
+  echo.
+  echo    _   _        _                             _                        
+  echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
+  echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
+  echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
+  echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
+  echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
+  echo                                                   __/ ^|                
+  echo                                                  ^|___/   
+  echo ________________________________________________________________________________
+  echo.
+  echo   %header%
+  echo ________________________________________________________________________________
+  echo.
+  echo   Hardware              [%hws%]  
+  echo   Hosts                 [%hfs%]
+  echo   Internet Protocol     [%ips%]
+  echo   Windows Shockets API  [%wss%]
+  echo   Adware Cleaner        [%acs%]
+  echo   Connection            [%cos%]                 
+  echo.
+  echo ________________________________________________________________________________
+  echo.
 
-rem create log file
-del log.txt 
-( 
-echo %header% 
-echo Time : %time:~,5%, %date%
-echo ________________________________________________________________________________
-echo Hardware Info :
-) > log.txt 
+  if %run% == 0 (
+    echo   Press "Enter" to Start
+    pause >nul
+    set hws=Collect
+    set run=1
+    goto main
+  ) else if %run% == 1 (
+    goto fhws
+  ) else if %run% == 2 (
+    goto fhfs
+  ) else if %run% == 3 (
+    goto fipsfls
+  ) else if %run% == 4 (
+    goto fipsreg
+  ) else if %run% == 5 (
+    goto fipsrel
+  ) else if %run% == 6 (
+    goto fipsnew
+  ) else if %run% == 7 (
+    goto fwss
+  ) else if %run% == 8 (
+    goto facs
+  ) else if %run% == 9 (
+    goto fcosspe
+  ) else if %run% == 10 (
+    goto fdone
+  ) else (
+    rem error
+    echo   Error Code 11
+    pause
+    exit
+  )                       
+)
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Collect]
-echo   Internet Protocol     [-]
-echo   Windows Shockets API  [-]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem collect hardware information
-systeminfo >> log.txt
+:fcoscon (
+  rem check connection
+  ping www.google.nl -n 1 -w 1000
+  if errorlevel 1 (set internet=0) else (set internet=1)
+)
 
-( 
-echo ________________________________________________________________________________
-echo Domain Name Server :
-) >> log.txt 
+:fhws (
+  rem if log exsist delete first
+  del log.txt 
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Flush DNS]
-echo   Windows Shockets API  [-]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem flush domain name server
-ipconfig /flushdns >> log.txt
+  rem create log file
+  ( 
+    echo %header% 
+    echo Started : %time:~,5%, %date%
+    echo ________________________________________________________________________________
+    echo Hardware :
+  ) > log.txt  
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Register DNS]
-echo   Windows Shockets API  [-]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem register new domain name server
-ipconfig /registerdns >> log.txt
+  rem collect hardware information
+  systeminfo >> log.txt
 
-( 
-echo ________________________________________________________________________________
-echo Internet Protocol :
-) >> log.txt
+  set hws=Done
+  set hfs=Update
+  set run=2
+  goto main
+)
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Release]
-echo   Windows Shockets API  [-]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem release internet protocol
-ipconfig /release >> log.txt
+:fhfs (
+  rem update log file
+  ( 
+    echo ________________________________________________________________________________
+    echo Host File :
+  ) >> log.txt
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Renew]
-echo   Windows Shockets API  [-]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem renew internet protocol
-ipconfig /renew >> log.txt
+  rem backup host file
+  copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"host %date:/=-% %time::=-%"
 
-( 
-echo ________________________________________________________________________________
-echo Windows Shockets API :
-) >> log.txt 
+  rem check internet first
+  call fcoscon
+  
+  rem if connected
+  if %internet% == 1 (
+    rem get hosts file and overwrite system hosts file
+    powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%SystemRoot%\System32\Drivers\etc\hosts')" >> log.txt
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Done]
-echo   Windows Shockets API  [Reset]
-echo   Hosts File            [-]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem run windows shocket reset
-netsh winsock reset >> log.txt
+    rem update log file
+    echo Updated Successfully from BebasID >> log.txt
+  rem if disconnected
+  ) else (
+    rem get hosts file and overwrite system hosts file
+    copy %~dp0\bin\host %SystemRoot%\System32\Drivers\etc\hosts
+    rem update log file
+    echo Updated Successfully >> log.txt
+  )
 
-( 
-echo ________________________________________________________________________________
-echo Host File Issue :
-) >> log.txt 
+  set hfs=Done
+  set ips=Flush DNS
+  set run=3
+  goto main
+)
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Done]
-echo   Windows Shockets API  [Done]
-echo   Hosts File            [Update]
-echo   Adware Cleaner        [-]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem get hosts file and overwrite system hosts file
-powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%SystemRoot%\System32\Drivers\etc\hosts')" >> log.txt
+:fipsfls (
+  rem update log file
+  ( 
+    echo ________________________________________________________________________________
+    echo Internet Protocol :
+  ) >> log.txt 
+  
+  rem flush domain name server
+  ipconfig /flushdns >> log.txt
 
-( 
-echo ________________________________________________________________________________
-echo Adware Cleaner Result :
-) >> log.txt 
+  set ips=Register DNS
+  set run=4
+  goto main
+)
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Done]
-echo   Windows Shockets API  [Done]
-echo   Hosts File            [Done]
-echo   Adware Cleaner        [Scan]
-echo   Connection            [-]                 
-echo.
-echo ________________________________________________________________________________
-rem accept adware cleaner eula
-bin\adwcleaner.exe /eula
-rem run adware cleaner with auto clean and dont reboot
-bin\adwcleaner.exe /clean /noreboot >> log.txt
+:fipsreg (
+  rem register new domain name server
+  ipconfig /registerdns >> log.txt
 
-( 
-echo ________________________________________________________________________________
-echo Ping Result :
-) >> log.txt 
+  set ips=Release IP
+  set run=5
+  goto main
+)
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Done]
-echo   Windows Shockets API  [Done]
-echo   Hosts File            [Done]
-echo   Adware Cleaner        [Done]
-echo   Connection            [Ping Test]                 
-echo.
-echo ________________________________________________________________________________
-rem test ping 
-ping %server% >> log.txt
+:fipsrel (
+  rem release internet protocol
+  ipconfig /release >> log.txt
 
-( 
-echo ________________________________________________________________________________
-echo Speedtest Result :
-) >> log.txt 
+  set ips=Renew IP
+  set run=6
+  goto main
+)
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Done]
-echo   Windows Shockets API  [Done]
-echo   Hosts File            [Done]
-echo   Adware Cleaner        [Done]
-echo   Connection            [Speed Test]                 
-echo.
-echo ________________________________________________________________________________
-rem clean run speedtest and accept license
-bin\speedtest.exe --accept-license >> log.txt
+:fipsnew (
+  rem renew internet protocol
+  ipconfig /renew >> log.txt
 
-( 
-echo ________________________________________________________________________________
-) >> log.txt 
+  set ips=Done
+  set wss=Reset
+  set run=7
+  goto main
+)
 
-cls
-echo.
-echo    _   _        _                             _                        
-echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-echo                                                   __/ ^|                
-echo                                                  ^|___/   
-echo ________________________________________________________________________________
-echo.
-echo   %header%
-echo ________________________________________________________________________________
-echo.
-echo   Hardware Check        [Done]
-echo   Internet Protocol     [Done]
-echo   Windows Shockets API  [Done]
-echo   Hosts File            [Done]
-echo   Adware Cleaner        [Done]
-echo   Connection            [Done]                 
-echo.
-echo ________________________________________________________________________________
-echo.
-echo                           Report Generated in "log.txt"
-echo                           Please Restart Your PC
-echo                           Press "Enter" to Exit
+:fwss (
+  rem update log file
+  ( 
+    echo ________________________________________________________________________________
+    echo Windows Shockets API :
+  ) >> log.txt 
+  rem run windows shocket reset
+  netsh winsock reset >> log.txt
 
-rem clean memory (detect as virus)
-rem %windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks
+  set wss=Done
+  set acs=Scan
+  set run=8
+  goto main
+)
 
-rem show complete dialog
-bin\msg.vbs
+:facs (
+  rem update log file
+  ( 
+    echo ________________________________________________________________________________
+    echo Adware Cleaner :
+  ) >> log.txt 
 
-pause >nul 
-exit
+  rem run adware cleaner with auto clean and dont reboot
+  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0 >> log.txt
+
+  set acs=Done
+  set cos=Speed Test
+  set run=9
+  goto main
+)
+
+:fcosspe (
+  ( 
+    echo ________________________________________________________________________________
+    echo Speedtest :
+  ) >> log.txt 
+
+  rem clean run speedtest and accept license
+  bin\speedtest.exe --accept-license >> log.txt
+
+  set cos=Done
+  set run=10
+  goto main
+)
+
+:fdone (
+  rem update log file (end)
+  ( 
+    echo ________________________________________________________________________________
+    echo Completed : %time:~,5%, %date%
+  ) >> log.txt 
+
+  rem show complete dialog
+  bin\msg.vbs
+
+  echo   Report Generated in "log.txt"
+  echo   Please Restart Your PC
+  echo   Press "Enter" to Exit
+
+  pause >nul 
+  exit
+)
