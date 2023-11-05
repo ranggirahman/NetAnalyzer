@@ -15,15 +15,6 @@ set acs=-
 set cos=-
 set run=-
 title "Net Analyzer %ver%"
-set server=8.8.8.8
-
-rem check connection
-ping %server% -n 1 -w 1000
-if errorlevel 1 (
-  set internet=0
-) else (
-  set internet=1
-)
 
 :main (
   rem main display
@@ -56,9 +47,7 @@ if errorlevel 1 (
   if %run% == - (
     echo   Press "Enter" to Start
     pause >nul
-    set hws=Collect
-    set run=fhws
-    goto main
+    goto finit
   ) else if %run% == fhws (
     goto %run%
   ) else if %run% == fhfback (
@@ -89,14 +78,32 @@ if errorlevel 1 (
   )                       
 )
 
-:fhws (
+:finit (
   rem if log exsist delete first
   del results\log
-
+  
   rem create log file
   ( 
     echo %header% 
     echo Started : %date:/=-% %time::=-%
+  ) > results\log
+
+  rem check connection
+  ping 8.8.8.8 -n 1 -w 1000
+  if errorlevel 1 (
+    set internet=0
+  ) else (
+    set internet=1
+  )  
+
+  set hws=Collect
+  set run=fhws
+  goto main
+)
+
+:fhws (
+  rem update log file
+  ( 
     echo ________________________________________________________________________________
     echo Hardware :
   ) > results\log  
@@ -122,7 +129,7 @@ if errorlevel 1 (
   for /f "tokens=*" %%A in ('dir "%~dp0\backup\*" /B /S /O:D') do (set "newestback=%%A")
 
   rem compare newest backup with system
-  fc "%newestback%" %SystemRoot%\System32\Drivers\etc\hosts > nul
+  fc "%newestback%" %SystemRoot%\System32\Drivers\etc\hosts >nul
   rem backup file is different from system
   if errorlevel 1 (
     copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"hosts %date:/=-% %time::=-%"
@@ -256,21 +263,24 @@ if errorlevel 1 (
 )
 
 :fdone (
+  set tcom=%date:/=-% %time::=-%
+
   rem update log file (end)
   ( 
     echo ________________________________________________________________________________
-    echo Completed : %date:/=-% %time::=-%
+    echo Completed : %tcom%
   ) >> results\log 
   
-  ren results\log "log %date:/=-% %time::=-%.txt"
+  ren results\log "log %tcom%.txt"
 
   rem show complete dialog
   bin\msg.vbs
 
-  echo   Report Generated in "results\log"
   echo   Please Restart Your PC
-  echo   Press "Enter" to Exit
-
-  pause >nul 
+  echo   Press "Enter" to View Report and Exit Program
+  
+  pause >nul
+  notepad results\log %tcom%.txt   
+  
   exit
 )

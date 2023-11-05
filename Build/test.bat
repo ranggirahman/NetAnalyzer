@@ -7,8 +7,6 @@ cd /d %~dp0
 rem ----------------- test field -----------------
 
 
-ren results\log "log %date:/=-% %time::=-%.txt"
-
 
 rem ----------------- end field -----------------
 
