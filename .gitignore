@@ -1,5 +1,7 @@
 
-Build/log.txt
-Build/bin/AdwCleaner
+Build/backup
+Build/bin/hosts/hosts-bebasid
+Build/results
+
+
 Release/log.txt
-Build/log.txt

@@ -5,15 +5,16 @@ rem back to original batch directory
 cd /d %~dp0
 
 rem initial variable
-set header=Net Analyzer 1.5 - https://github.com/ranggirahman
+set ver=1.5.0
+set header=Net Analyzer %ver% - https://github.com/ranggirahman
 set hws=-
 set ips=-
 set wss=-
 set hfs=-
 set acs=-
 set cos=-
-set run=0
-title %header%
+set run=-
+title "Net Analyzer %ver%"
 set server=8.8.8.8
 
 rem check connection
@@ -25,6 +26,7 @@ if errorlevel 1 (
 )
 
 :main (
+  rem main display
   cls
   echo.
   echo    _   _        _                             _                        
@@ -50,32 +52,35 @@ if errorlevel 1 (
   echo ________________________________________________________________________________
   echo.
 
-  if %run% == 0 (
+  rem index
+  if %run% == - (
     echo   Press "Enter" to Start
     pause >nul
     set hws=Collect
-    set run=1
+    set run=fhws
     goto main
-  ) else if %run% == 1 (
-    goto fhws
-  ) else if %run% == 2 (
-    goto fhfs
-  ) else if %run% == 3 (
-    goto fipsfls
-  ) else if %run% == 4 (
-    goto fipsreg
-  ) else if %run% == 5 (
-    goto fipsrel
-  ) else if %run% == 6 (
-    goto fipsnew
-  ) else if %run% == 7 (
-    goto fwss
-  ) else if %run% == 8 (
-    goto facs
-  ) else if %run% == 9 (
-    goto fcosspe
-  ) else if %run% == 10 (
-    goto fdone
+  ) else if %run% == fhws (
+    goto %run%
+  ) else if %run% == fhfback (
+    goto %run%
+  ) else if %run% == fhfud (
+    goto %run%
+  ) else if %run% == fipsfls (
+    goto %run%
+  ) else if %run% == fipsreg (
+    goto %run%
+  ) else if %run% == fipsrel (
+    goto %run%
+  ) else if %run% == fipsnew (
+    goto %run%
+  ) else if %run% == fwss (
+    goto %run%
+  ) else if %run% == facs (
+    goto %run%
+  ) else if %run% == fcosspe (
+    goto %run%
+  ) else if %run% == fdone (
+    goto %run%
   ) else (
     rem error
     echo   Error Code 11
@@ -86,55 +91,73 @@ if errorlevel 1 (
 
 :fhws (
   rem if log exsist delete first
-  del log.txt 
+  del results\log
 
   rem create log file
   ( 
     echo %header% 
-    echo Started : %time:~,5%, %date%
+    echo Started : %date:/=-% %time::=-%
     echo ________________________________________________________________________________
     echo Hardware :
-  ) > log.txt  
+  ) > results\log  
 
   rem collect hardware information
-  systeminfo >> log.txt
+  systeminfo >> results\log
 
   set hws=Done
-  set hfs=Update
-  set run=2
+  set hfs=Backup
+  set run=fhfback
   goto main
 )
 
-:fhfs (
+:fhfback (
   rem update log file
   ( 
     echo ________________________________________________________________________________
     echo Host File :
     echo.
-  ) >> log.txt
+  ) >> results\log
 
-  rem backup host file
-  copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"host %date:/=-% %time::=-%"
-  
+  rem execution search
+  for /f "tokens=*" %%A in ('dir "%~dp0\backup\*" /B /S /O:D') do (set "newestback=%%A")
+
+  rem compare newest backup with system
+  fc "%newestback%" %SystemRoot%\System32\Drivers\etc\hosts > nul
+  rem backup file is different from system
+  if errorlevel 1 (
+    copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"hosts %date:/=-% %time::=-%"
+    echo Existing system Hosts files backup to 'hosts %date:/=-% %time::=-%' >> results\log
+  ) else (
+    echo Not backup because system Host file same as last backup
+  )
+  set hfs=Update
+  set run=fhfud
+  goto main
+)
+
+:fhfud (
   rem if connected
   if %internet% == 1 (
     rem get hosts file and overwrite system hosts file
-    powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%SystemRoot%\System32\Drivers\etc\hosts')" >> log.txt
+    powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%~dp0\bin\hosts\hosts-bebasid')"
+
+    rem delete some ip detected as danger
+    findstr /v "52.215.192.131 www.status.streamable.com status.streamable.com" %~dp0\bin\hosts\hosts-bebasid > %SystemRoot%\System32\Drivers\etc\hosts
 
     rem update log file
-    echo Updated Successfully from BebasID >> log.txt
+    echo Updated Successfully from BebasID >> results\log
   rem if disconnected
   ) else (
     rem get hosts file and overwrite system hosts file
-    copy %~dp0\bin\host\host-patch %SystemRoot%\System32\Drivers\etc\hosts
+    copy %~dp0\bin\hosts\hosts-patch %SystemRoot%\System32\Drivers\etc\hosts
 
     rem update log file
-    echo Updated Successfully >> log.txt
+    echo Updated Successfully >> results\log
   )
 
   set hfs=Done
   set ips=Flush DNS
-  set run=3
+  set run=fipsfls
   goto main
 )
 
@@ -143,41 +166,41 @@ if errorlevel 1 (
   ( 
     echo ________________________________________________________________________________
     echo Internet Protocol :
-  ) >> log.txt 
+  ) >> results\log 
   
   rem flush domain name server
-  ipconfig /flushdns >> log.txt
+  ipconfig /flushdns >> results\log
 
   set ips=Register DNS
-  set run=4
+  set run=fipsreg
   goto main
 )
 
 :fipsreg (
   rem register new domain name server
-  ipconfig /registerdns >> log.txt
+  ipconfig /registerdns >> results\log
 
   set ips=Release IP
-  set run=5
+  set run=fipsrel
   goto main
 )
 
 :fipsrel (
   rem release internet protocol
-  ipconfig /release >> log.txt
+  ipconfig /release >> results\log
 
   set ips=Renew IP
-  set run=6
+  set run=fipsnew
   goto main
 )
 
 :fipsnew (
   rem renew internet protocol
-  ipconfig /renew >> log.txt
+  ipconfig /renew >> results\log
 
   set ips=Done
   set wss=Reset
-  set run=7
+  set run=fwss
   goto main
 )
 
@@ -186,13 +209,13 @@ if errorlevel 1 (
   ( 
     echo ________________________________________________________________________________
     echo Windows Shockets API :
-  ) >> log.txt 
+  ) >> results\log 
   rem run windows shocket reset
-  netsh winsock reset >> log.txt
+  netsh winsock reset >> results\log
 
   set wss=Done
   set acs=Scan
-  set run=8
+  set run=facs
   goto main
 )
 
@@ -201,25 +224,20 @@ if errorlevel 1 (
   ( 
     echo ________________________________________________________________________________
     echo Adware Cleaner :
-  ) >> log.txt 
+  ) >> results\log 
 
   rem run adware cleaner with auto clean and dont reboot
-  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\bin 
-
-  rem configuration for search newest log
-  Set "MainDirectory=%~dp0\bin\AdwCleaner\Logs"
-  Set "FileExtension=*.txt"
-  Set "CopyDestination=%~dp0"
+  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\results
 
   rem execution search
-  for /f "tokens=*" %%A in ('DIR "%MainDirectory%\%FileExtension%" /B /S /O:D') do (SET "NewestFile=%%A")
+  for /f "tokens=*" %%A in ('dir "%~dp0\bin\AdwCleaner\Logs\*.txt" /B /S /O:D') do (SET "newestadwl=%%A")
 
-  rem copy log
-  type "%NewestFile%" >> log.txt
+  rem copy to log
+  type "%newestadwl%" >> results\log
 
   set acs=Done
   set cos=Speed Test
-  set run=9
+  set run=fcosspe
   goto main
 )
 
@@ -227,13 +245,13 @@ if errorlevel 1 (
   ( 
     echo ________________________________________________________________________________
     echo Speedtest :
-  ) >> log.txt 
+  ) >> results\log 
 
   rem clean run speedtest and accept license
-  bin\speedtest.exe --accept-license >> log.txt
+  bin\speedtest.exe --accept-license >> results\log
 
   set cos=Done
-  set run=10
+  set run=fdone
   goto main
 )
 
@@ -241,13 +259,15 @@ if errorlevel 1 (
   rem update log file (end)
   ( 
     echo ________________________________________________________________________________
-    echo Completed : %time:~,5%, %date%
-  ) >> log.txt 
+    echo Completed : %date:/=-% %time::=-%
+  ) >> results\log 
+  
+  ren results\log "log %date:/=-% %time::=-%.txt"
 
   rem show complete dialog
   bin\msg.vbs
 
-  echo   Report Generated in "log.txt"
+  echo   Report Generated in "results\log"
   echo   Please Restart Your PC
   echo   Press "Enter" to Exit
 
