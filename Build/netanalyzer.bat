@@ -204,7 +204,18 @@ if errorlevel 1 (
   ) >> log.txt 
 
   rem run adware cleaner with auto clean and dont reboot
-  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\bin >> log.txt
+  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\bin 
+
+  rem configuration for search newest log
+  Set "MainDirectory=%~dp0\bin\AdwCleaner\Logs"
+  Set "FileExtension=*.txt"
+  Set "CopyDestination=%~dp0"
+
+  rem execution search
+  for /f "tokens=*" %%A in ('DIR "%MainDirectory%\%FileExtension%" /B /S /O:D') do (SET "NewestFile=%%A")
+
+  rem copy log
+  type "%NewestFile%" >> log.txt
 
   set acs=Done
   set cos=Speed Test
