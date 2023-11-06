@@ -1,10 +1,12 @@
 @echo off
-rem run as admin
+:: run as admin
 if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit /b)
-rem back to original batch directory
+:: back to original batch directory
 cd /d %~dp0
 
-rem initial variable
+setlocal enableextensions
+
+:: initial variable
 set ver=1.5.0
 set header=Net Analyzer %ver% - https://github.com/ranggirahman
 set hws=-
@@ -13,11 +15,11 @@ set wss=-
 set hfs=-
 set acs=-
 set cos=-
-set run=-
+set run=finit
 title "Net Analyzer %ver%"
 
 :main (
-  rem main display
+  :: main display
   cls
   echo.
   echo    _   _        _                             _                        
@@ -42,53 +44,26 @@ title "Net Analyzer %ver%"
   echo.
   echo ________________________________________________________________________________
   echo.
-
-  rem index
-  if %run% == - (
+  if %run% == finit (
     echo   Press "Enter" to Start
     pause >nul
-    goto finit
-  ) else if %run% == fhws (
-    goto %run%
-  ) else if %run% == fhfback (
-    goto %run%
-  ) else if %run% == fhfud (
-    goto %run%
-  ) else if %run% == fipsfls (
-    goto %run%
-  ) else if %run% == fipsreg (
-    goto %run%
-  ) else if %run% == fipsrel (
-    goto %run%
-  ) else if %run% == fipsnew (
-    goto %run%
-  ) else if %run% == fwss (
-    goto %run%
-  ) else if %run% == facs (
-    goto %run%
-  ) else if %run% == fcosspe (
-    goto %run%
-  ) else if %run% == fdone (
-    goto %run%
-  ) else (
-    rem error
-    echo   Error Code 11
-    pause
-    exit
-  )                       
+  )
+  echo.
+
+  goto %run%  
 )
 
 :finit (
-  rem if log exsist delete first
-  del results\log
+  :: if exist delete old temp log first
+  if exist results\log del /F results\log
   
-  rem create log file
+  :: create log file
   ( 
     echo %header% 
     echo Started : %date:/=-% %time::=-%
   ) > results\log
 
-  rem check connection
+  :: check connection
   ping 8.8.8.8 -n 1 -w 1000
   if errorlevel 1 (
     set internet=0
@@ -102,13 +77,13 @@ title "Net Analyzer %ver%"
 )
 
 :fhws (
-  rem update log file
+  :: update log file
   ( 
     echo ________________________________________________________________________________
     echo Hardware :
   ) > results\log  
 
-  rem collect hardware information
+  :: collect hardware information
   systeminfo >> results\log
 
   set hws=Done
@@ -118,24 +93,24 @@ title "Net Analyzer %ver%"
 )
 
 :fhfback (
-  rem update log file
+  :: update log file
   ( 
     echo ________________________________________________________________________________
     echo Host File :
     echo.
   ) >> results\log
 
-  rem execution search
+  :: execution search
   for /f "tokens=*" %%A in ('dir "%~dp0\backup\*" /B /S /O:D') do (set "newestback=%%A")
 
-  rem compare newest backup with system
+  :: compare newest backup with system
   fc "%newestback%" %SystemRoot%\System32\Drivers\etc\hosts >nul
-  rem backup file is different from system
+  :: backup file is different from system
   if errorlevel 1 (
     copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"hosts %date:/=-% %time::=-%"
     echo Existing system Hosts files backup to 'hosts %date:/=-% %time::=-%' >> results\log
   ) else (
-    echo Not backup because system Host file same as last backup
+    echo Not backup because system Host file same as last backup >> results\log
   )
   set hfs=Update
   set run=fhfud
@@ -143,22 +118,22 @@ title "Net Analyzer %ver%"
 )
 
 :fhfud (
-  rem if connected
+  :: if connected
   if %internet% == 1 (
-    rem get hosts file and overwrite system hosts file
+    :: get hosts file and overwrite system hosts file
     powershell -command "(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw', '%~dp0\bin\hosts\hosts-bebasid')"
 
-    rem delete some ip detected as danger
+    :: delete some ip detected as danger
     findstr /v "52.215.192.131 www.status.streamable.com status.streamable.com" %~dp0\bin\hosts\hosts-bebasid > %SystemRoot%\System32\Drivers\etc\hosts
 
-    rem update log file
+    :: update log file
     echo Updated Successfully from BebasID >> results\log
-  rem if disconnected
+  :: if disconnected
   ) else (
-    rem get hosts file and overwrite system hosts file
+    :: get hosts file and overwrite system hosts file
     copy %~dp0\bin\hosts\hosts-patch %SystemRoot%\System32\Drivers\etc\hosts
 
-    rem update log file
+    :: update log file
     echo Updated Successfully >> results\log
   )
 
@@ -169,13 +144,13 @@ title "Net Analyzer %ver%"
 )
 
 :fipsfls (
-  rem update log file
+  :: update log file
   ( 
     echo ________________________________________________________________________________
     echo Internet Protocol :
   ) >> results\log 
   
-  rem flush domain name server
+  :: flush domain name server
   ipconfig /flushdns >> results\log
 
   set ips=Register DNS
@@ -184,7 +159,7 @@ title "Net Analyzer %ver%"
 )
 
 :fipsreg (
-  rem register new domain name server
+  :: register new domain name server
   ipconfig /registerdns >> results\log
 
   set ips=Release IP
@@ -193,7 +168,7 @@ title "Net Analyzer %ver%"
 )
 
 :fipsrel (
-  rem release internet protocol
+  :: release internet protocol
   ipconfig /release >> results\log
 
   set ips=Renew IP
@@ -202,7 +177,7 @@ title "Net Analyzer %ver%"
 )
 
 :fipsnew (
-  rem renew internet protocol
+  :: renew internet protocol
   ipconfig /renew >> results\log
 
   set ips=Done
@@ -212,12 +187,12 @@ title "Net Analyzer %ver%"
 )
 
 :fwss (
-  rem update log file
+  :: update log file
   ( 
     echo ________________________________________________________________________________
     echo Windows Shockets API :
   ) >> results\log 
-  rem run windows shocket reset
+  :: run windows shocket reset
   netsh winsock reset >> results\log
 
   set wss=Done
@@ -227,23 +202,23 @@ title "Net Analyzer %ver%"
 )
 
 :facs (
-  rem update log file
+  :: update log file
   ( 
     echo ________________________________________________________________________________
     echo Adware Cleaner :
   ) >> results\log 
 
-  rem run adware cleaner with auto clean and dont reboot
+  :: run adware cleaner with auto clean and dont reboot
   bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\results
 
-  rem execution search
-  for /f "tokens=*" %%A in ('dir "%~dp0\bin\AdwCleaner\Logs\*.txt" /B /S /O:D') do (SET "newestadwl=%%A")
+  :: execution search
+  for /f "tokens=*" %%A in ('dir "%~dp0\results\AdwCleaner\Logs\*.txt" /B /S /O:D') do (SET "newestadwl=%%A")
 
-  rem copy to log
+  :: copy to log
   type "%newestadwl%" >> results\log
 
   set acs=Done
-  set cos=Speed Test
+  set cos=Test
   set run=fcosspe
   goto main
 )
@@ -254,33 +229,34 @@ title "Net Analyzer %ver%"
     echo Speedtest :
   ) >> results\log 
 
-  rem clean run speedtest and accept license
+  :: clean run speedtest and accept license
   bin\speedtest.exe --accept-license >> results\log
 
   set cos=Done
-  set run=fdone
+  set run=fend
   goto main
 )
 
-:fdone (
+:fend (
   set tcom=%date:/=-% %time::=-%
 
-  rem update log file (end)
+  :: update log file (end)
   ( 
     echo ________________________________________________________________________________
     echo Completed : %tcom%
   ) >> results\log 
   
   ren results\log "log %tcom%.txt"
-
-  rem show complete dialog
-  bin\msg.vbs
-
-  echo   Please Restart Your PC
-  echo   Press "Enter" to View Report and Exit Program
   
-  pause >nul
-  notepad results\log %tcom%.txt   
-  
+  cscript //nologo //e:vbscript "bin\msg"
+  set "exitCode=%errorlevel%"
+  :: if No do view report
+  if errorlevel 7 (
+    results\"log %tcom%.txt"
+  :: if Yes do restart
+  ) else if errorlevel 6 (
+    shutdown -t 0 -r -f
+  )
+
   exit
 )
