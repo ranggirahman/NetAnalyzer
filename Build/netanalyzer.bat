@@ -248,7 +248,7 @@ title "Net Analyzer %ver%"
   
   ren results\log "log %tcom%.txt"
   
-  cscript //nologo //e:vbscript "bin\msg"
+  cscript //nologo //e:vbscript "bin\msgcom"
   set "exitCode=%errorlevel%"
   :: if No do view report
   if errorlevel 7 (
