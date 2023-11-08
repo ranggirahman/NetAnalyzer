@@ -19,7 +19,7 @@ set wss=-
 set hfs=-
 set acs=-
 set cos=-
-set run=fcheck
+set run=facs
 
 rem hosts file update
 set hostsprovider=BebasID
@@ -57,19 +57,17 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
 :fcheck (
   rem check connection
-  ping 8.8.8.8 -n 1 -w 1000
+  ping 8.8.8.8 -n 1 -w 1000 >nul
   rem if no connection
   if errorlevel 1 (
     set internet=0
     rem skip check for updates
-    set run=finit
+    goto finit
   ) else (
     set internet=1
     rem do check for updates
-    set run=fupdate
-  )
-
-  goto main  
+    goto fupdate
+  )  
 )
 
 :fupdate (
@@ -93,14 +91,14 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
       exit
     ) 
   )
-  echo   Press "Enter" to Start
-  pause >nul
 
-  set run=finit
-  goto main
+  goto finit
 )
 
 :finit (
+  echo   Press "Enter" to Start
+  pause >nul
+
   rem if exist delete old temp log first
   if exist results\log del /F results\log
   
@@ -120,7 +118,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ( 
     echo ________________________________________________________________________________
     echo Hardware :
-  ) > results\log  
+  ) >> results\log  
 
   rem collect hardware information
   systeminfo >> results\log

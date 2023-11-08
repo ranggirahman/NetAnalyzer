@@ -7,8 +7,10 @@ cd /d %~dp0
 rem ----------------- test field -----------------
 
 
-ping .12.3.231 
-if %ERRORLEVEL% neq 0 echo error
+( 
+  echo %header% 
+  echo Started : %date:/=-% %time::=-%
+) > log
 
 
 rem ----------------- end field -----------------
