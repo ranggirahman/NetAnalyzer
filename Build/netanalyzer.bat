@@ -5,11 +5,11 @@ rem back to original batch directory
 cd /d %~dp0
 
 rem app properties
-rem if new version updated please edit Build/assets/verser too
+rem if new version updated please edit Build/bin/verser too
 set ver=1.5.0
 title "Net Analyzer %ver%"
 set header=Net Analyzer %ver% - https://github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/assets/verser
+set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/bin/verser
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
 rem initial variable
@@ -67,27 +67,23 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
   if %ver% == %latestver% (
     echo   No updates found
-    echo   Press "Enter" to Start
-    pause >nul
-
-    set run=finit
-    goto main
   ) else (
     echo   New version found %latestver%
     cscript //nologo //e:vbscript "bin\msgver"
     rem if No do continue process
     if errorlevel 7 (
-      echo   Press "Enter" to Start
-      pause >nul
-
-      set run=finit
-      goto main
+      echo   xxx
     rem if Yes do update
     ) else if errorlevel 6 (
       start "" %downloadlink%"
       exit
     )  
   )
+  echo   Press "Enter" to Start
+  pause >nul
+
+  set run=finit
+  goto main
 )
 
 :finit (

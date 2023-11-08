@@ -1,0 +1,1 @@
+WScript.Quit msgBox("Yes to restart now" & vbcrlf & "No to view report and restart computer later",VBYesNo+VBQuestion,"Would you like to restart computer now ?") 
