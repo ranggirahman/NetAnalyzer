@@ -1,6 +1,10 @@
 
 Build/backup
-Build/bin/hosts/hosts-bebasid
+Build/bin/hosts/hosts-download
+Build/bin/verdmp
 Build/results
 
-Release/log.txt
+Release/backup
+Release/bin/hosts/hosts-download
+Release/bin/verdmp
+Release/results

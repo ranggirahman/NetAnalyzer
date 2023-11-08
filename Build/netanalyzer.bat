@@ -9,7 +9,7 @@ rem if new version updated please edit Build/bin/verser too
 set ver=1.5.0
 title "Net Analyzer %ver%"
 set header=Net Analyzer %ver% - https://github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/bin/verser
+set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Build/bin/verser
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
 rem initial variable
@@ -19,7 +19,7 @@ set wss=-
 set hfs=-
 set acs=-
 set cos=-
-set run=fupdate
+set run=fcheck
 
 rem hosts file update
 set hostsprovider=BebasID
@@ -55,6 +55,23 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   goto %run%  
 )
 
+:fcheck (
+  rem check connection
+  ping 8.8.8.8 -n 1 -w 1000
+  rem if no connection
+  if errorlevel 1 (
+    set internet=0
+    rem skip check for updates
+    set run=finit
+  ) else (
+    set internet=1
+    rem do check for updates
+    set run=fupdate
+  )
+
+  goto main  
+)
+
 :fupdate (
   rem check app update
   
@@ -70,14 +87,11 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ) else (
     echo   New version found %latestver%
     cscript //nologo //e:vbscript "bin\msgver"
-    rem if No do continue process
-    if errorlevel 7 (
-      echo   xxx
     rem if Yes do update
-    ) else if errorlevel 6 (
+    if errorlevel 6 (
       start "" %downloadlink%"
       exit
-    )  
+    ) 
   )
   echo   Press "Enter" to Start
   pause >nul
@@ -95,14 +109,6 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     echo %header% 
     echo Started : %date:/=-% %time::=-%
   ) > results\log
-
-  rem check connection
-  ping 8.8.8.8 -n 1 -w 1000
-  if errorlevel 1 (
-    set internet=0
-  ) else (
-    set internet=1
-  )  
 
   set hws=Collect
   set run=fhws
