@@ -5,10 +5,11 @@ rem back to original batch directory
 cd /d %~dp0
 
 rem app properties
-title "Net Analyzer %ver%"
+rem if new version updated please edit Build/assets/verser too
 set ver=1.5.0
+title "Net Analyzer %ver%"
 set header=Net Analyzer %ver% - https://github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/version1
+set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/assets/verser
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
 rem initial variable
@@ -18,37 +19,11 @@ set wss=-
 set hfs=-
 set acs=-
 set cos=-
-set run=finit
+set run=fupdate
 
-rem hosts file
+rem hosts file update
 set hostsprovider=BebasID
 set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw
-
-:fupdate (
-  rem check app update
-  
-  rem if exist delete old dump first
-  if exist bin\dmpver del /F bin\dmpver
-
-  rem get latest version
-  powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0\bin\dmpver')"
-  set /p latestver=<"%~dp0\bin\dmpver"
-
-  if %ver% == %latestver% (
-    goto main
-  ) else (
-    cscript //nologo //e:vbscript "bin\msgver"
-    rem if No do continue process
-    if errorlevel 7 (
-      goto main
-    rem if Yes do update
-    ) else if errorlevel 6 (
-      start "" %downloadlink%"
-    )  
-  )
-  pause
-)
-
 
 :main (
   rem main display
@@ -76,13 +51,43 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo.
   echo ________________________________________________________________________________
   echo.
-  if %run% == finit (
-    echo   Press "Enter" to Start
-    pause >nul
-  )
-  echo.
 
   goto %run%  
+)
+
+:fupdate (
+  rem check app update
+  
+  rem if exist delete old dump first
+  if exist bin\verdmp del /F bin\verdmp
+
+  rem get latest version
+  powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0\bin\verdmp')"
+  set /p latestver=<"%~dp0\bin\verdmp"
+
+  if %ver% == %latestver% (
+    echo   No updates found
+    echo   Press "Enter" to Start
+    pause >nul
+
+    set run=finit
+    goto main
+  ) else (
+    echo   New version found %latestver%
+    cscript //nologo //e:vbscript "bin\msgver"
+    rem if No do continue process
+    if errorlevel 7 (
+      echo   Press "Enter" to Start
+      pause >nul
+
+      set run=finit
+      goto main
+    rem if Yes do update
+    ) else if errorlevel 6 (
+      start "" %downloadlink%"
+      exit
+    )  
+  )
 )
 
 :finit (
