@@ -3,16 +3,13 @@ Network Tools
 
 ## Feature
 - Get Hardware Info
+- Unblock some web (for indonesia region)
 - Flush DNS
 - Register DNS
 - IP Release
 - IP Renew
 - Winshock Reset
-- Ping Test
-- Speed Test
-
-
-## Upcoming Feature
-- Unblock indonesia region website
 - Adware Cleaner
+- Connection Test
+- Program Updates
 
