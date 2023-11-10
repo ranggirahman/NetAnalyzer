@@ -16,8 +16,8 @@ Introducing NetAnalyzer, your all-in-one solution for comprehensive network tool
 
 ## Build with 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/adwarecleaner.png" height="100" title="Adware Cleaner">
-  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/speedtestnet.png" height="100" alt="Speedtest.net">
-  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/bebasid.png" height="100" alt="BebasID">
+  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/adwarecleaner.png" height="25" title="Adware Cleaner">
+  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/speedtestnet.png" height="25" alt="Speedtest.net">
+  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/bebasid.png" height="25" alt="BebasID">
 </p>
 
