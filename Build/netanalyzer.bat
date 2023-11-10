@@ -7,8 +7,8 @@ cd /d %~dp0
 rem app properties
 rem if new version updated please edit Build/bin/verser too
 set ver=1.5.0
-title "Net Analyzer %ver%"
-set header=Net Analyzer %ver% - https://github.com/ranggirahman
+title "NetAnalyzer %ver%"
+set header=NetAnalyzer %ver% - https://github.com/ranggirahman
 set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Build/bin/verser
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
