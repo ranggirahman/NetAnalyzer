@@ -1,37 +1,3 @@
-::[Bat To Exe Converter]
-::
-::YAwzoRdxOk+EWAjk
-::fBw5plQjdCuDJGmW+0UiKRZZRQqFAEW/EpQS6eTi9e+Vnn8YR+0qaozeyYinI+8dpEznevY=
-::YAwzuBVtJxjWCl3EqQJgSA==
-::ZR4luwNxJguZRRnk
-::Yhs/ulQjdF+5
-::cxAkpRVqdFKZSDk=
-::cBs/ulQjdF+5
-::ZR41oxFsdFKZSDk=
-::eBoioBt6dFKZSDk=
-::cRo6pxp7LAbNWATEpCI=
-::egkzugNsPRvcWATEpCI=
-::dAsiuh18IRvcCxnZtBJQ
-::cRYluBh/LU+EWAnk
-::YxY4rhs+aU+IeA==
-::cxY6rQJ7JhzQF1fEqQJhZk4aHErSXA==
-::ZQ05rAF9IBncCkqN+0xwdVsFAlHMbCXqZg==
-::ZQ05rAF9IAHYFVzEqQIeLQ91QgWOJXG/FNU=
-::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
-::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
-::cRolqwZ3JBvQF1fEqQIeLQ91QgWOJXG/FPlc8efu/aqGrkFQXexyd4HemqeBLPUH40rqNZAixDpZl8YcHh5Qexy4Zxkx6WBHonOKJczcpwDuRlvp
-::dhA7uBVwLU+EWDk=
-::YQ03rBFzNR3SWATElA==
-::dhAmsQZ3MwfNWATE1AJieEkHLA==
-::ZQ0/vhVqMQ3MEVWAtB9wSA==
-::Zg8zqx1/OA3MEVWAtB9wSA==
-::dhA7pRFwIByZRRnk
-::Zh4grVQjdCuDJGmW+0UiKRZZRQqFAEW/EpQS6eTi9e+Vnn8YWOc+a4rn9LGaYMEd60n9b5M/lisUzYVcQh5Ae3I=
-::YB416Ek+ZW8=
-::
-::
-::978f952a14a936cc963da21a135fa983
-
 @echo off
 rem run as admin
 if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit /b)
@@ -101,14 +67,18 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo   Press "Enter" to Start
   pause >nul
 
+  rem create operation directory if not exist
+  if not exist "%~dp0\results" mkdir "%~dp0\results"
+  if not exist "%~dp0\backup" mkdir "%~dp0\backup"
+
   rem if exist delete old temp log first
-  if exist results\log del /F results\log
+  if exist %~dp0\results\log del /F %~dp0\results\log
   
   rem create log file
   ( 
     echo %header% 
     echo Started : %date:/=-% %time::=-%
-  ) > results\log
+  ) > %~dp0\results\log
 
   set hws=Collect
   set run=fhws
@@ -131,7 +101,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 :fupd (
   rem check app update  
   rem if exist delete old dump first
-  if exist bin\verdmp del /F bin\verdmp
+  if exist %~dp0\bin\verdmp del /F %~dp0\bin\verdmp
 
   rem get latest version
   powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0\bin\verdmp')"
@@ -141,7 +111,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     echo   No updates found
   ) else (
     echo   New version found %latestver%
-    cscript //nologo //e:vbscript "bin\msgver"
+    cscript //nologo //e:vbscript "%~dp0\bin\msgver"
     rem if Yes do update
     if errorlevel 6 (
       start "" %downloadlink%"
@@ -158,10 +128,10 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ( 
     echo ________________________________________________________________________________
     echo Hardware :
-  ) >> results\log  
+  ) >> %~dp0\results\log  
 
   rem collect hardware information
-  systeminfo >> results\log
+  systeminfo >> %~dp0\results\log
 
   set hws=Done
   set hfs=Backup
@@ -175,7 +145,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     echo ________________________________________________________________________________
     echo Host File :
     echo.
-  ) >> results\log
+  ) >> %~dp0\results\log
 
   rem execution search
   for /f "tokens=*" %%A in ('dir "%~dp0\backup\*" /B /S /O:D') do (set "newestback=%%A")
@@ -185,9 +155,9 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   rem backup file is different from system
   if errorlevel 1 (
     copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"hosts %date:/=-% %time::=-%"
-    echo Existing system Hosts files backup to 'hosts %date:/=-% %time::=-%' >> results\log
+    echo Existing system Hosts files backup to 'hosts %date:/=-% %time::=-%' >> %~dp0\results\log
   ) else (
-    echo Not backup because system Host file same as last backup >> results\log
+    echo Not backup because system Host file same as last backup >> %~dp0\results\log
   )
   set hfs=Update
   set run=fhfud
@@ -204,14 +174,14 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     findstr /v "52.215.192.131 www.status.streamable.com status.streamable.com" %~dp0\bin\hosts\hosts-download > %SystemRoot%\System32\Drivers\etc\hosts
 
     rem update log file
-    echo Update Success from %hostsprovider% >> results\log
+    echo Update Success from %hostsprovider% >> %~dp0\results\log
   rem if disconnected
   ) else (
     rem get hosts file and overwrite system hosts file
     copy %~dp0\bin\hosts\hosts-patch %SystemRoot%\System32\Drivers\etc\hosts
 
     rem update log file
-    echo Update Success >> results\log
+    echo Update Success >> %~dp0\results\log
   )
 
   set hfs=Done
@@ -225,10 +195,10 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ( 
     echo ________________________________________________________________________________
     echo Internet Protocol :
-  ) >> results\log 
+  ) >> %~dp0\results\log 
   
   rem flush domain name server
-  ipconfig /flushdns >> results\log
+  ipconfig /flushdns >> %~dp0\results\log
 
   set ips=Register DNS
   set run=fipsreg
@@ -237,7 +207,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
 :fipsreg (
   rem register new domain name server
-  ipconfig /registerdns >> results\log
+  ipconfig /registerdns >> %~dp0\results\log
 
   set ips=Release IP
   set run=fipsrel
@@ -246,7 +216,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
 :fipsrel (
   rem release internet protocol
-  ipconfig /release >> results\log
+  ipconfig /release >> %~dp0\results\log
 
   set ips=Renew IP
   set run=fipsnew
@@ -255,7 +225,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
 :fipsnew (
   rem renew internet protocol
-  ipconfig /renew >> results\log
+  ipconfig /renew >> %~dp0\results\log
 
   set ips=Done
   set wss=Reset
@@ -268,9 +238,9 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ( 
     echo ________________________________________________________________________________
     echo Windows Shockets API :
-  ) >> results\log 
+  ) >> %~dp0\results\log 
   rem run windows shocket reset
-  netsh winsock reset >> results\log
+  netsh winsock reset >> %~dp0\results\log
 
   set wss=Done
   set acs=Scan
@@ -283,16 +253,16 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ( 
     echo ________________________________________________________________________________
     echo Adware Cleaner :
-  ) >> results\log 
+  ) >> %~dp0\results\log 
 
   rem run adware cleaner with auto clean and dont reboot
-  bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\results
+  %~dp0\bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\results
 
   rem execution search
   for /f "tokens=*" %%A in ('dir "%~dp0\results\AdwCleaner\Logs\*.txt" /B /S /O:D') do (SET "newestadwl=%%A")
 
   rem copy to log
-  type "%newestadwl%" >> results\log
+  type "%newestadwl%" >> %~dp0\results\log
 
   set acs=Done
   set cos=Test
@@ -306,16 +276,16 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     echo ________________________________________________________________________________
     echo Connection :
     echo.
-  ) >> results\log 
+  ) >> %~dp0\results\log 
 
   rem check connection
   call :fchk
   if %internet% == 1 (
     rem clean run speedtest and accept license
-    bin\speedtest.exe --accept-license >> results\log
+    %~dp0\bin\speedtest.exe --accept-license >> %~dp0\results\log
     set cos=Done
   ) else (
-    echo Connection test skipped because it doesn't connect to the internet  >> results\log
+    echo Connection test skipped because it doesn't connect to the internet  >> %~dp0\results\log
     set cos=Skip
   )   
   
@@ -330,7 +300,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     echo ________________________________________________________________________________
     echo System Cleanup :
     echo.
-  ) >> results\log 
+  ) >> %~dp0\results\log 
 
   rem delete temporary files
   del /s /f /q %windir%\temp\*.* >nul
@@ -364,7 +334,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   md %homepath%\appdata\locallow\temp >nul
 
   rem update log file
-  echo System File Cleanup Success  >> results\log
+  echo System File Cleanup Success  >> %~dp0\results\log
 
   set cln=Done
   set run=fend
@@ -378,15 +348,15 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ( 
     echo ________________________________________________________________________________
     echo Completed : %tcom%
-  ) >> results\log 
+  ) >> %~dp0\results\log 
   
-  ren results\log "log %tcom%.txt"
+  ren %~dp0\results\log "log %tcom%.txt"
   
   rem show popup dialog
-  cscript //nologo //e:vbscript "bin\msgend"
+  cscript //nologo //e:vbscript "%~dp0\bin\msgend"
   rem if No do view report
   if errorlevel 7 (
-    results\"log %tcom%.txt"
+    %~dp0\results\"log %tcom%.txt"
   rem if Yes do restart
   ) else if errorlevel 6 (
     shutdown -t 0 -r -f
