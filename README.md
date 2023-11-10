@@ -15,7 +15,9 @@ Introducing NetAnalyzer, your all-in-one solution for comprehensive network mana
 - Program Updates
 
 ## Build with 
-![Adware Cleaner](https://upload.wikimedia.org/wikipedia/commons/9/99/Logo_AdwCleaner.png)
-![Speedtest](https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Speedtest.net_logo.svg/640px-Speedtest.net_logo.svg.png)
-![BebasID](https://github.com/bebasid/bebasid/blob/master/dev/resources/BEBASID.png?raw=true)
+<p align="left">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Logo_AdwCleaner.png" width="200" title="Adware Cleaner">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Speedtest.net_logo.svg/640px-Speedtest.net_logo.svg.png" width="200" alt="Speedtest.net">
+  <img src="https://github.com/bebasid/bebasid/blob/master/dev/resources/BEBASID.png?raw=true" width="200" alt="BebasID">
+</p>
 
