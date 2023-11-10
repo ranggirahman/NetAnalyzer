@@ -1,3 +1,37 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAjk
+::fBw5plQjdCuDJGmW+0UiKRZZRQqFAEW/EpQS6eTi9e+Vnn8YR+0qaozeyYinI+8dpEznevY=
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSDk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+IeA==
+::cxY6rQJ7JhzQF1fEqQJhZk4aHErSXA==
+::ZQ05rAF9IBncCkqN+0xwdVsFAlHMbCXqZg==
+::ZQ05rAF9IAHYFVzEqQIeLQ91QgWOJXG/FNU=
+::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
+::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
+::cRolqwZ3JBvQF1fEqQIeLQ91QgWOJXG/FPlc8efu/aqGrkFQXexyd4HemqeBLPUH40rqNZAixDpZl8YcHh5Qexy4Zxkx6WBHonOKJczcpwDuRlvp
+::dhA7uBVwLU+EWDk=
+::YQ03rBFzNR3SWATElA==
+::dhAmsQZ3MwfNWATE1AJieEkHLA==
+::ZQ0/vhVqMQ3MEVWAtB9wSA==
+::Zg8zqx1/OA3MEVWAtB9wSA==
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCuDJGmW+0UiKRZZRQqFAEW/EpQS6eTi9e+Vnn8YWOc+a4rn9LGaYMEd60n9b5M/lisUzYVcQh5Ae3I=
+::YB416Ek+ZW8=
+::
+::
+::978f952a14a936cc963da21a135fa983
+
 @echo off
 rem run as admin
 if not "%1"=="am_admin" (powershell start -verb runas '%0' am_admin & exit /b)
