@@ -19,7 +19,8 @@ set wss=-
 set hfs=-
 set acs=-
 set cos=-
-set run=facs
+set cln=-
+set run=fini
 
 rem hosts file update
 set hostsprovider=BebasID
@@ -47,7 +48,8 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo   Internet Protocol     [%ips%]
   echo   Windows Shockets API  [%wss%]
   echo   Adware Cleaner        [%acs%]
-  echo   Connection            [%cos%]                 
+  echo   Connection            [%cos%]
+  echo   System Cleanup        [%cln%]                 
   echo.
   echo ________________________________________________________________________________
   echo.
@@ -55,24 +57,45 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   goto %run%  
 )
 
-:fcheck (
+:fini (
   rem check connection
+  call :fchk
+  if %internet% == 1 (
+    call :fupd
+  )
+
+  echo   Press "Enter" to Start
+  pause >nul
+
+  rem if exist delete old temp log first
+  if exist results\log del /F results\log
+  
+  rem create log file
+  ( 
+    echo %header% 
+    echo Started : %date:/=-% %time::=-%
+  ) > results\log
+
+  set hws=Collect
+  set run=fhws
+  goto main
+)
+
+:fchk (
   ping 8.8.8.8 -n 1 -w 1000 >nul
   rem if no connection
   if errorlevel 1 (
     set internet=0
-    rem skip check for updates
-    goto finit
   ) else (
     set internet=1
-    rem do check for updates
-    goto fupdate
   )  
+  
+  rem end of function
+  exit /b
 )
 
-:fupdate (
-  rem check app update
-  
+:fupd (
+  rem check app update  
   rem if exist delete old dump first
   if exist bin\verdmp del /F bin\verdmp
 
@@ -91,26 +114,9 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
       exit
     ) 
   )
-
-  goto finit
-)
-
-:finit (
-  echo   Press "Enter" to Start
-  pause >nul
-
-  rem if exist delete old temp log first
-  if exist results\log del /F results\log
   
-  rem create log file
-  ( 
-    echo %header% 
-    echo Started : %date:/=-% %time::=-%
-  ) > results\log
-
-  set hws=Collect
-  set run=fhws
-  goto main
+  rem end of function
+  exit /b
 )
 
 :fhws (
@@ -256,20 +262,77 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
   set acs=Done
   set cos=Test
-  set run=fcosspe
+  set run=fcos
   goto main
 )
 
-:fcosspe (
+:fcos (
+  rem update log file
   ( 
     echo ________________________________________________________________________________
-    echo Speedtest :
+    echo Connection :
+    echo.
   ) >> results\log 
 
-  rem clean run speedtest and accept license
-  bin\speedtest.exe --accept-license >> results\log
+  rem check connection
+  call :fchk
+  if %internet% == 1 (
+    rem clean run speedtest and accept license
+    bin\speedtest.exe --accept-license >> results\log
+    set cos=Done
+  ) else (
+    echo Connection test skipped because it doesn't connect to the internet  >> results\log
+    set cos=Skip
+  )   
+  
+  set cln=Clean
+  set run=fcln
+  goto main
+)
 
-  set cos=Done
+:fcln (
+  rem update log file
+  ( 
+    echo ________________________________________________________________________________
+    echo System Cleanup :
+    echo.
+  ) >> results\log 
+
+  rem delete temporary files
+  del /s /f /q %windir%\temp\*.* >nul
+  del /s /f /q %windir%\prefetch\*.* >nul
+  del /s /f /q %temp%\*.* >nul
+  del /s /f /q %appdata%\temp\*.* >nul
+  del /s /f /q %homepath%\appdata\locallow\temp\*.* >nul
+
+  rem delete used drivers files (not needed because already installed)
+  del /s /f /q %systemdrive%\amd\*.* >nul
+  del /s /f /q %systemdrive%\nvidia\*.* >nul
+  del /s /f /q %systemdrive%\intel\*.* >nul
+
+  rem delete temporary folders
+  rd /s /q %windir%\temp >nul
+  rd /s /q %windir%\prefetch >nul
+  rd /s /q %temp% >nul
+  rd /s /q %appdata%\temp >nul
+  rd /s /q %homepath%\appdata\locallow\temp >nul
+
+  rem delete used drivers folders (not needed because already installed)
+  rd /s /q %systemdrive%\amd >nul
+  rd /s /q %systemdrive%\nvidia >nul
+  rd /s /q %systemdrive%\intel >nul
+
+  rem recreate empty temporary folders
+  md %windir%\temp >nul
+  md %windir%\prefetch >nul
+  md %temp% >nul
+  md %appdata%\temp >nul
+  md %homepath%\appdata\locallow\temp >nul
+
+  rem update log file
+  echo System File Cleanup Success  >> results\log
+
+  set cln=Done
   set run=fend
   goto main
 )

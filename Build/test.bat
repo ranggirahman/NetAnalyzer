@@ -7,11 +7,6 @@ cd /d %~dp0
 rem ----------------- test field -----------------
 
 
-( 
-  echo %header% 
-  echo Started : %date:/=-% %time::=-%
-) > log
-
 
 rem ----------------- end field -----------------
 
