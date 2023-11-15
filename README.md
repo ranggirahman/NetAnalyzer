@@ -10,7 +10,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 
 
 ## Download
-[NetAnalyzer](https://github.com/ranggirahman/NetAnalyzer/releases)
+<a href="https://github.com/ranggirahman/NetAnalyzer/releases"><img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/downloadwin.png" height="35"></a>
 
 
 ## Feature
