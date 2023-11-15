@@ -35,9 +35,15 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
     <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/adwarecleaner.png" height="35">
   </picture>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/speedtestnet.png" height="35" alt="Speedtest.net">
+  <picture>
+    <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/speedtestnet-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/speedtestnet.png" height="35">
+  </picture>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/bebasid.png" height="35" alt="BebasID">
+  <picture>
+    <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/bebasid-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/bebasid.png" height="35">
+  </picture>
 </p>
 
 
