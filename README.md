@@ -1,7 +1,7 @@
 # NetAnalyzer
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/icon.png" height="50" title="NetAnalyzer">
+  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/Icon.png" height="50" title="NetAnalyzer">
 </p>
 
 Introducing NetAnalyzer, your all-in-one solution for comprehensive network tools. With NetAnalyzer, you gain instant access to detailed hardware information, empowering you with insights into your system's specifications and performance. NetAnalyzer allows seamless access to restricted websites, ensuring a smooth and unrestricted browsing experience. Resolve connectivity issues effortlessly with features like DNS flushing, registration, and Winshock resetting, while also maintaining a secure environment with the Adware Cleaner. Conduct thorough Connection Tests to evaluate network stability and performance. The IP Release and Renew functionalities optimize your IP address management, enhancing overall network efficiency. NetAnalyzer doesn't stop there – it also includes tools for System Cleanup, ridding your system of unnecessary files and improving performance. Stay up-to-date with the latest software advancements through Program Updates, ensuring that your system operates at its best. NetAnalyzer is the go-to app for users seeking a robust and user-friendly suite of network tools.
