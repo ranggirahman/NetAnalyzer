@@ -1,10 +1,8 @@
 
 Build/backup
 Build/bin/hosts/hosts-download
-Build/bin/verdmp
 Build/results
 
 Release/backup
 Release/bin/hosts/hosts-download
-Release/bin/verdmp
 Release/results
