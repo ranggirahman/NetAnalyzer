@@ -1,1 +1,0 @@
-WScript.Quit msgBox("Yes, goto download site" & vbcrlf & "No, update later",VBYesNo+VBQuestion,"New version found, Would you like to update ?") 

@@ -5,11 +5,11 @@ rem back to original batch directory
 cd /d %~dp0
 
 rem app properties
-rem if new version updated please edit Build/bin/verser too
-set ver=1.5.0
+rem if new version updated please edit Resources/latestver too
+set ver=1.5.2
 title "NetAnalyzer %ver%"
 set header=NetAnalyzer %ver% - https://github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Build/bin/verser
+set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/latestver
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
 rem initial variable
@@ -58,12 +58,12 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 )
 
 :fpop prompt type title
-  rem create popup dialog
-  echo WScript.Quit msgBox("%~1",%~2,"%~3") >"%~dp0\bin\tmp" 
-  cscript //nologo //e:vbscript "%~dp0\bin\tmp"
-  set "exitCode=%errorlevel%"
-  del "%~dp0\bin\tmp" >nul 2>nul
-  endlocal & exit /b %exitCode%
+  echo WScript.Quit msgBox("%~1",%~2,"%~3") >"%~dp0\bin\fpop.tmp" 
+  cscript //nologo //e:vbscript "%~dp0\bin\fpop.tmp"
+  set "exitcode=%errorlevel%"
+  del /f "%~dp0\bin\fpop.tmp" >nul 2>nul
+
+  exit /b %exitcode%
 rem close function
 
 :fini (
@@ -110,19 +110,23 @@ rem close function
 :fupd (
   rem check app update  
   rem if exist delete old dump first
-  if exist %~dp0\bin\verdmp del /F %~dp0\bin\verdmp
+  if exist %~dp0\bin\fupd.tmp del /f %~dp0\bin\fupd.tmp
 
   rem get latest version
-  powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0\bin\verdmp')"
-  set /p latestver=<"%~dp0\bin\verdmp"
+  powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0\bin\fupd.tmp')"
+  set /p latestver=<"%~dp0\bin\fupd.tmp"
+
+  del /f "%~dp0\bin\fupd.tmp" >nul 2>nul
 
   if %ver% == %latestver% (
     echo   No updates found
   ) else (
     echo   New version found %latestver%
-    call :fpop "Yes, Visit download site" & vbcrlf & "No, update later" "VBYesNo+VBQuestion" "New version found, Would you like to update ?"
+    call :fpop "Choose 'Yes' to visit the site or 'No' to update later." "VBYesNo+VBQuestion" "New version found, Would you like to update ?"
     rem if Yes do update
-    if errorlevel 6 (
+    if errorlevel 7 (
+      rem update later
+    ) else if errorlevel 6 (
       start "" %downloadlink%"
       exit
     ) 
@@ -362,7 +366,7 @@ rem close function
   ren %~dp0\results\log "log %tcom%.txt"
   
   rem show popup dialog
-  call :fpop "Yes to restart now" & vbcrlf & "No to view report and restart computer later" "VBYesNo+VBQuestion" "Would you like to restart computer now ?"
+  call :fpop "Select 'Yes' to restart computer now or 'No' to review report and restart later." "VBYesNo+VBQuestion" "Would you like to restart computer now ?"
   rem if No do view report
   if errorlevel 7 (
     echo Restart Pending >> %~dp0\results\log
