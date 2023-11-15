@@ -30,8 +30,10 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 
 ## Build With 
 <p>
-  ![adware logo](https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/adwarecleaner-dark.png#gh-dark-mode-only)
-  ![adware logo](https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/adwarecleaner.png#gh-light-mode-only)
+  <picture>
+    <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/adwarecleaner-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/adwarecleaner.png">
+  </picture>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/speedtestnet.png" height="35" alt="Speedtest.net">
   &nbsp;&nbsp;&nbsp;&nbsp;
