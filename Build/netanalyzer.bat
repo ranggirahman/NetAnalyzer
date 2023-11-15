@@ -46,7 +46,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo   Hardware              [%hws%]  
   echo   Hosts                 [%hfs%]
   echo   Internet Protocol     [%ips%]
-  echo   Windows Shockets API  [%wss%]
+  echo   Windows Sockets API   [%wss%]
   echo   Adware Cleaner        [%acs%]
   echo   Connection            [%cos%]
   echo   System Cleanup        [%cln%]                 
@@ -54,8 +54,17 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo ________________________________________________________________________________
   echo.
 
-  goto %run%  
+  goto :%run%  
 )
+
+:fpop prompt type title
+  rem create popup dialog
+  echo WScript.Quit msgBox("%~1",%~2,"%~3") >"%~dp0\bin\tmp" 
+  cscript //nologo //e:vbscript "%~dp0\bin\tmp"
+  set "exitCode=%errorlevel%"
+  del "%~dp0\bin\tmp" >nul 2>nul
+  endlocal & exit /b %exitCode%
+rem close function
 
 :fini (
   rem check connection
@@ -82,7 +91,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
   set hws=Collect
   set run=fhws
-  goto main
+  goto :main
 )
 
 :fchk (
@@ -111,7 +120,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     echo   No updates found
   ) else (
     echo   New version found %latestver%
-    cscript //nologo //e:vbscript "%~dp0\bin\msgver"
+    call :fpop "Yes, Visit download site" & vbcrlf & "No, update later" "VBYesNo+VBQuestion" "New version found, Would you like to update ?"
     rem if Yes do update
     if errorlevel 6 (
       start "" %downloadlink%"
@@ -136,7 +145,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   set hws=Done
   set hfs=Backup
   set run=fhfback
-  goto main
+  goto :main
 )
 
 :fhfback (
@@ -161,7 +170,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   )
   set hfs=Update
   set run=fhfud
-  goto main
+  goto :main
 )
 
 :fhfud (
@@ -187,7 +196,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   set hfs=Done
   set ips=Flush DNS
   set run=fipsfls
-  goto main
+  goto :main
 )
 
 :fipsfls (
@@ -202,7 +211,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
   set ips=Register DNS
   set run=fipsreg
-  goto main
+  goto :main
 )
 
 :fipsreg (
@@ -211,7 +220,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
   set ips=Release IP
   set run=fipsrel
-  goto main
+  goto :main
 )
 
 :fipsrel (
@@ -220,7 +229,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 
   set ips=Renew IP
   set run=fipsnew
-  goto main
+  goto :main
 )
 
 :fipsnew (
@@ -230,22 +239,22 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   set ips=Done
   set wss=Reset
   set run=fwss
-  goto main
+  goto :main
 )
 
 :fwss (
   rem update log file
   ( 
     echo ________________________________________________________________________________
-    echo Windows Shockets API :
+    echo Windows Sockets API :
   ) >> %~dp0\results\log 
-  rem run windows shocket reset
+  rem run windows socket reset
   netsh winsock reset >> %~dp0\results\log
 
   set wss=Done
   set acs=Scan
   set run=facs
-  goto main
+  goto :main
 )
 
 :facs (
@@ -267,7 +276,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   set acs=Done
   set cos=Test
   set run=fcos
-  goto main
+  goto :main
 )
 
 :fcos (
@@ -285,13 +294,13 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
     %~dp0\bin\speedtest.exe --accept-license >> %~dp0\results\log
     set cos=Done
   ) else (
-    echo Connection test skipped because it doesn't connect to the internet  >> %~dp0\results\log
+    echo Connection test skipped because it doesn't connect to the internet >> %~dp0\results\log
     set cos=Skip
   )   
   
   set cln=Clean
   set run=fcln
-  goto main
+  goto :main
 )
 
 :fcln (
@@ -334,11 +343,11 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   md %homepath%\appdata\locallow\temp >nul
 
   rem update log file
-  echo System File Cleanup Success  >> %~dp0\results\log
+  echo System File Cleanup Success >> %~dp0\results\log
 
   set cln=Done
   set run=fend
-  goto main
+  goto :main
 )
 
 :fend (
@@ -353,12 +362,14 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   ren %~dp0\results\log "log %tcom%.txt"
   
   rem show popup dialog
-  cscript //nologo //e:vbscript "%~dp0\bin\msgend"
+  call :fpop "Yes to restart now" & vbcrlf & "No to view report and restart computer later" "VBYesNo+VBQuestion" "Would you like to restart computer now ?"
   rem if No do view report
   if errorlevel 7 (
+    echo Restart Pending >> %~dp0\results\log
     %~dp0\results\"log %tcom%.txt"
   rem if Yes do restart
   ) else if errorlevel 6 (
+    echo Restart Immediately >> %~dp0\results\log
     shutdown -t 0 -r -f
   )
 
