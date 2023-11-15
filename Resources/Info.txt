@@ -1,8 +1,4 @@
-Title : Net Analyzer 1.5.0
-
-Product Name : Net Analyzer 
+Product Name : NetAnalyzer 
 Description : Network Tools
 Company : https://github.com/ranggirahman
 Copyright : @2023
-
-File Name : Net Analyzer 1.5.0
