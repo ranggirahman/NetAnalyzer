@@ -8,11 +8,12 @@ Introducing NetAnalyzer, your all-in-one solution for comprehensive network tool
 
 Conduct thorough Connection Tests to evaluate network stability and performance. The IP Release and Renew functionalities optimize your IP address management, enhancing overall network efficiency. NetAnalyzer doesn't stop there – it also includes tools for System Cleanup, ridding your system of unnecessary files and improving performance. Stay up-to-date with the latest software advancements through Program Updates, ensuring that your system operates at its best. NetAnalyzer is the go-to app for users seeking a robust and user-friendly suite of network tools.
 
-<br /><br />
+<br />
 
 ## Download
 <a href="https://github.com/ranggirahman/NetAnalyzer/releases"><img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/downloadwin.png" height="50"></a>
 
+<br />
 
 ## Feature
 - Get Hardware Info
@@ -27,7 +28,8 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 - Connection Test
 - System Cleanup
 - Program Updates
-  
+
+<br />
 
 ## Build With 
 <p>
@@ -47,7 +49,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
   </picture>
 </p>
 
-
+<br />
 
 ## Terms and Conditions
 By using NetAnalyzer, you agree to its terms, allowing personal, non-commercial use while adhering to applicable laws. Respect for user privacy is maintained, as outlined in the accompanying Privacy Policy. Users are responsible for network access fees, and the app is provided "as is" without warranty. NetAnalyzer may be modified or suspended at any time, and users are encouraged to keep the app updated for optimal performance. User conduct must not impair app functioning or interfere with others. Governed by the laws, these terms are subject to change without notice, and continued use implies acceptance of revised conditions [Readmore](https://github.com/ranggirahman/NetAnalyzer/blob/main/Resources/Terms%20and%20Condition.md).
