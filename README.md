@@ -27,10 +27,24 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 
 <br />
 
+## How to Use
+1. Download NetAnalyzer.rar latest version below
+2. Extract .rar on your computer then run NetAnalyzer.bat
+3. Confirm the admin popup if necessary, then press Enter to start the process
+4. Wait until all process Done. If possible, restart the computer immediately afterwards
+
+<br />
+
 ## Download
 <a href="https://github.com/ranggirahman/NetAnalyzer/releases"><img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/downloadwin.png" height="50"></a>
 
 <br />
+
+## Is this safe?
+<a href="https://www.virustotal.com/gui/file/c77f5dd414ca54eb775aa735f25d4586e67e05368c890179f2d6bd0025340af2/detection"><img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/virustotal.png" height="50"></a>
+
+<br />
+
 
 ## Build With 
 <p>
