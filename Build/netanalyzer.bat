@@ -18,7 +18,6 @@ set ips=-
 set wss=-
 set hfs=-
 set acs=-
-set tad=-
 set cos=-
 set cln=-
 set run=fini
@@ -26,9 +25,6 @@ set run=fini
 rem hosts file update
 set hostsprovider=BebasID
 set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw
-
-rem time and date server
-set ntpserver=time.windows.com
 
 :main (
   rem main display
@@ -52,7 +48,6 @@ set ntpserver=time.windows.com
   echo   Internet Protocol     [%ips%]
   echo   Windows Sockets API   [%wss%]
   echo   Adware Cleaner        [%acs%]
-  echo   Time and Date         [%tad%]
   echo   Connection            [%cos%]
   echo   System Cleanup        [%cln%]                 
   echo.
@@ -283,27 +278,6 @@ rem close function
   type "%newestadwl%" >> %~dp0\results\log
 
   set acs=Done
-  set tad=Sync
-  set run=ftad
-  goto :main
-)
-
-:ftad (
-  rem update log file
-  ( 
-    echo ________________________________________________________________________________
-    echo Computer Time and Date :
-  ) >> %~dp0\results\log
-
-  rem use w32tm to force synchronization with the specified ntp server
-  w32tm /query /peers >> %~dp0\results\log
-  sc config w32time start= auto >> %~dp0\results\log
-  w32tm /config /manualpeerlist:%NTPServer% /syncfromflags:manual /reliable:YES /update
-  net stop w32time
-  net start w32time
-  w32tm /resync /nowait >> %~dp0\results\log
-
-  set tad=Done
   set cos=Test
   set run=fcos
   goto :main
