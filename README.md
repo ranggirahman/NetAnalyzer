@@ -41,7 +41,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 <br />
 
 ## Is this safe?
-<a href="https://www.virustotal.com/gui/file/c77f5dd414ca54eb775aa735f25d4586e67e05368c890179f2d6bd0025340af2/detection"><img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/virustotal.png" height="50"></a>
+<a href="https://www.virustotal.com/gui/file/c77f5dd414ca54eb775aa735f25d4586e67e05368c890179f2d6bd0025340af2/detection"><img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/virustotal.png" height="30"></a>
 
 <br />
 
