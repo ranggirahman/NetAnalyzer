@@ -41,7 +41,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 <br />
 
 ## Is this safe?
-> No security vendors and no sandboxes flagged this file as malicious, check below
+No security vendors and no sandboxes flagged this file as malicious, check below
 <a href="https://www.virustotal.com/gui/file/c77f5dd414ca54eb775aa735f25d4586e67e05368c890179f2d6bd0025340af2/detection">
   <picture>
     <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/virustotal-dark.png" media="(prefers-color-scheme: dark)">
