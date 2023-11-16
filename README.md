@@ -56,4 +56,9 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 By using NetAnalyzer, you agree to its terms, allowing personal, non-commercial use while adhering to applicable laws. Respect for user privacy is maintained, as outlined in the accompanying Privacy Policy. Users are responsible for network access fees, and the app is provided "as is" without warranty. NetAnalyzer may be modified or suspended at any time, and users are encouraged to keep the app updated for optimal performance. User conduct must not impair app functioning or interfere with others. Governed by the laws, these terms are subject to change without notice, and continued use implies acceptance of revised conditions [Readmore](https://github.com/ranggirahman/NetAnalyzer/blob/main/Resources/Terms%20and%20Condition.md).
 
 ## License
+<picture><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" height="22"></picture>
+<picture><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" height="22"></picture>
+<picture><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" height="22"></picture>
+<picture><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" height="22"></picture>
+<br />
 NetAnalyzer © 2022 by Ranggi R. is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
