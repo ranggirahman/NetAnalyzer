@@ -1,7 +1,9 @@
 # NetAnalyzer
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/Icon.png" height="150" title="NetAnalyzer">
+  <picture>
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/Icon.png" height="150" title="NetAnalyzer">
+  </picture>
 </p>
 
 Introducing NetAnalyzer, your all-in-one solution for comprehensive network tools. With NetAnalyzer, you gain instant access to detailed hardware information, empowering you with insights into your system's specifications and performance. NetAnalyzer allows seamless access to restricted websites, ensuring a smooth and unrestricted browsing experience. Resolve connectivity issues effortlessly with features like DNS flushing, registration, and Winsock resetting, while also maintaining a secure environment with the Adware Cleaner, sync computer time and date. 
