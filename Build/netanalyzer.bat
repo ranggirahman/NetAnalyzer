@@ -9,11 +9,12 @@ rem if new version updated please edit Resources/latestver too
 set ver=1.5.2
 title "NetAnalyzer %ver%"
 set header=NetAnalyzer %ver% - https://github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/Resources/latestver
+set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/latestver
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
-rem initial variable
+rem display initial variable
 set hws=-
+set tad=-
 set ips=-
 set wss=-
 set hfs=-
@@ -43,7 +44,8 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo   %header%
   echo ________________________________________________________________________________
   echo.
-  echo   Hardware              [%hws%]  
+  echo   Hardware              [%hws%] 
+  echo   Time and Date         [%tad%] 
   echo   Hosts                 [%hfs%]
   echo   Internet Protocol     [%ips%]
   echo   Windows Sockets API   [%wss%]
@@ -147,6 +149,32 @@ rem close function
   systeminfo >> %~dp0\results\log
 
   set hws=Done
+  set tad=Sync
+  set run=ftad
+  goto :main
+)
+
+:ftad (
+  rem update log file
+  ( 
+    echo ________________________________________________________________________________
+    echo Computer Time and Date :
+  ) >> %~dp0\results\log
+  
+  rem start service
+  net start w32time
+
+  rem use w32tm to force synchronization with the specified ntp server
+  w32tm /query /peers >> %~dp0\results\log
+  sc config w32time start= auto >> %~dp0\results\log
+  w32tm /config /manualpeerlist:%NTPServer% /syncfromflags:manual /reliable:YES /update >> %~dp0\results\log
+
+  rem restart service
+  net stop w32time
+  net start w32time
+  w32tm /resync /nowait >> %~dp0\results\log
+
+  set tad=Done
   set hfs=Backup
   set run=fhfback
   goto :main
