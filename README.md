@@ -47,7 +47,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 <a href="https://www.virustotal.com/gui/file/c77f5dd414ca54eb775aa735f25d4586e67e05368c890179f2d6bd0025340af2/detection">
   <picture>
     <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/virustotal-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/virustotal.png" height="30">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/virustotal.png" height="150">
   </picture>
 </a>
 
