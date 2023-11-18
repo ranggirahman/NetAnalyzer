@@ -1,5 +1,5 @@
 Product Name : NetAnalyzer
-Latest Version : 1.5.3
+Latest Version : 1.5.2 
 Description : Network Tools
 Company : https://github.com/ranggirahman
-Copyright : @ 2023
+Copyright : @2023
