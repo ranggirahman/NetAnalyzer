@@ -6,11 +6,7 @@ cd /d %~dp0
 
 rem ----------------- test field -----------------
 
-for /f "eol=: tokens=4 delims= " %%a in ('find "Version" %~dp0/info.txt') do (
-   set x=%%a
-)
 
-echo %x%
 
 rem ----------------- end field -----------------
 

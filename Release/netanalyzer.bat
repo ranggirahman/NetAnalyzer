@@ -6,10 +6,10 @@ cd /d %~dp0
 
 rem app properties
 rem if new version updated please edit Resources/latestver too
-set ver=1.5.2
+set ver=1.5.3
 title "NetAnalyzer %ver%"
 set header=NetAnalyzer %ver% - https://github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/latestver
+set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/info.txt
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
 rem display initial variable
@@ -116,7 +116,11 @@ rem close function
 
   rem get latest version
   powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0\bin\fupd.tmp')"
-  set /p latestver=<"%~dp0\bin\fupd.tmp"
+
+  rem find version value
+  for /f "eol=: tokens=4 delims= " %%a in ('find "Version" %~dp0\bin\fupd.tmp') do (
+   set latestver=%%a
+  )
 
   del /f "%~dp0\bin\fupd.tmp" >nul 2>nul
 
