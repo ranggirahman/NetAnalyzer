@@ -5,7 +5,7 @@ rem back to original batch directory
 cd /d %~dp0
 
 rem app properties
-rem if new version updated please edit Resources/latestver too
+rem if new version updated please edit resources/info too
 set ver=1.5.3
 title "NetAnalyzer %ver%"
 set header=NetAnalyzer %ver% - https://github.com/ranggirahman
