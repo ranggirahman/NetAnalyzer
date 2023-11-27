@@ -5,8 +5,8 @@ rem back to original batch directory
 cd /d %~dp0
 
 rem app properties
-rem if new version updated please edit Resources/latestver too
-set ver=1.5.3
+rem if new version updated please edit resources/info too
+set ver=1.5.4
 title "NetAnalyzer %ver%"
 set header=NetAnalyzer %ver% - https://github.com/ranggirahman
 set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/info.txt
@@ -51,7 +51,7 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo   Windows Sockets API   [%wss%]
   echo   Adware Cleaner        [%acs%]
   echo   Connection            [%cos%]
-  echo   System Cleanup        [%cln%]                 
+  echo   System Cleanup        [%cln%]                
   echo.
   echo ________________________________________________________________________________
   echo.
@@ -60,10 +60,10 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
 )
 
 :fpop prompt type title
-  echo WScript.Quit msgBox("%~1",%~2,"%~3") >"%~dp0\bin\fpop.tmp" 
-  cscript //nologo //e:vbscript "%~dp0\bin\fpop.tmp"
+  echo WScript.Quit msgBox("%~1",%~2,"%~3") >"%~dp0bin\fpop.tmp" 
+  cscript //nologo //e:vbscript "%~dp0bin\fpop.tmp"
   set "exitcode=%errorlevel%"
-  del /f "%~dp0\bin\fpop.tmp" >nul 2>nul
+  del /f "%~dp0bin\fpop.tmp" >nul 2>nul
 
   exit /b %exitcode%
 rem close function
@@ -71,6 +71,7 @@ rem close function
 :fini (
   rem check connection
   call :fchk
+  rem if internet available check for program updates
   if %internet% == 1 (
     call :fupd
   )
@@ -79,17 +80,17 @@ rem close function
   pause >nul
 
   rem create operation directory if not exist
-  if not exist "%~dp0\results" mkdir "%~dp0\results"
-  if not exist "%~dp0\backup" mkdir "%~dp0\backup"
+  if not exist "%~dp0results" mkdir "%~dp0results"
+  if not exist "%~dp0backup" mkdir "%~dp0backup"
 
   rem if exist delete old temp log first
-  if exist %~dp0\results\log del /F %~dp0\results\log
+  if exist %~dp0results\log del /F %~dp0results\log
   
   rem create log file
   ( 
     echo %header% 
     echo Started : %date:/=-% %time::=-%
-  ) > %~dp0\results\log
+  ) > %~dp0results\log
 
   set hws=Collect
   set run=fhws
@@ -112,21 +113,19 @@ rem close function
 :fupd (
   rem check app update  
   rem if exist delete old dump first
-  if exist %~dp0\bin\fupd.tmp del /f %~dp0\bin\fupd.tmp
+  if exist %~dp0bin\fupd.tmp del /f %~dp0bin\fupd.tmp
 
   rem get latest version
-  powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0\bin\fupd.tmp')"
+  powershell -command "(new-object System.Net.WebClient).DownloadFile('%verlink%', '%~dp0bin\fupd.tmp')"
 
   rem find version value
-  for /f "eol=: tokens=4 delims= " %%a in ('find "Version" %~dp0\bin\fupd.tmp') do (
+  for /f "eol=: tokens=4 delims= " %%a in ('find "Version" %~dp0bin\fupd.tmp') do (
    set latestver=%%a
   )
 
-  del /f "%~dp0\bin\fupd.tmp" >nul 2>nul
+  del /f "%~dp0bin\fupd.tmp" >nul 2>nul
 
-  if %ver% == %latestver% (
-    echo   No updates found
-  ) else (
+  if %ver% lss %latestver% (
     echo   New version found %latestver%
     call :fpop "Choose 'Yes' to visit the site or 'No' to update later." "VBYesNo+VBQuestion" "New version found, Would you like to update ?"
     rem if Yes do update
@@ -136,6 +135,8 @@ rem close function
       start "" %downloadlink%"
       exit
     ) 
+  ) else (
+    echo   No updates found
   )
   
   rem end of function
@@ -147,10 +148,10 @@ rem close function
   ( 
     echo ________________________________________________________________________________
     echo Hardware :
-  ) >> %~dp0\results\log  
+  ) >> %~dp0results\log  
 
   rem collect hardware information
-  systeminfo >> %~dp0\results\log
+  systeminfo >> %~dp0results\log
 
   set hws=Done
   set tad=Sync
@@ -163,20 +164,25 @@ rem close function
   ( 
     echo ________________________________________________________________________________
     echo Computer Time and Date :
-  ) >> %~dp0\results\log
+    echo.
+  ) >> %~dp0results\log
   
+  rem refresh time
+  w32tm /unregister
+  w32tm /register
+
   rem start service
   net start w32time
 
   rem use w32tm to force synchronization with the specified ntp server
-  w32tm /query /peers >> %~dp0\results\log
-  sc config w32time start= auto >> %~dp0\results\log
-  w32tm /config /manualpeerlist:%NTPServer% /syncfromflags:manual /reliable:YES /update >> %~dp0\results\log
+  w32tm /query /peers >> %~dp0results\log
+  sc config w32time start= auto >> %~dp0results\log
+  w32tm /config /manualpeerlist:%NTPServer% /syncfromflags:manual /reliable:YES /update >> %~dp0results\log
 
-  rem restart service
+  rem restart service and sync
   net stop w32time
   net start w32time
-  w32tm /resync /nowait >> %~dp0\results\log
+  w32tm /resync /nowait >> %~dp0results\log
 
   set tad=Done
   set hfs=Backup
@@ -190,19 +196,19 @@ rem close function
     echo ________________________________________________________________________________
     echo Host File :
     echo.
-  ) >> %~dp0\results\log
+  ) >> %~dp0results\log
 
   rem execution search
-  for /f "tokens=*" %%A in ('dir "%~dp0\backup\*" /B /S /O:D') do (set "newestback=%%A")
+  for /f "tokens=*" %%A in ('dir "%~dp0backup\*" /B /S /O:D') do (set "newestback=%%A")
 
   rem compare newest backup with system
   fc "%newestback%" %SystemRoot%\System32\Drivers\etc\hosts >nul
   rem backup file is different from system
   if errorlevel 1 (
-    copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0\backup\"hosts %date:/=-% %time::=-%"
-    echo Existing system Hosts files backup to 'hosts %date:/=-% %time::=-%' >> %~dp0\results\log
+    copy %SystemRoot%\System32\Drivers\etc\hosts %~dp0backup\"hosts %date:/=-% %time::=-%"
+    echo Existing system Hosts files backup to 'hosts %date:/=-% %time::=-%' >> %~dp0results\log
   ) else (
-    echo Not backup because system Host file same as last backup >> %~dp0\results\log
+    echo Not backup because system Host file same as last backup >> %~dp0results\log
   )
   set hfs=Update
   set run=fhfud
@@ -210,26 +216,35 @@ rem close function
 )
 
 :fhfud (
-  rem if connected
-  if %internet% == 1 (
-    rem get hosts file and overwrite system hosts file
-    powershell -command "(new-object System.Net.WebClient).DownloadFile('%hostslink%', '%~dp0\bin\hosts\hosts-download')"
+  rem get timezone for location
+  for /f "delims=" %%i in ('tzutil /g') do set location=%%i
 
-    rem delete some ip detected as danger
-    findstr /v "52.215.192.131 www.status.streamable.com status.streamable.com" %~dp0\bin\hosts\hosts-download > %SystemRoot%\System32\Drivers\etc\hosts
+  rem if location match
+  if /i "%location%" equ "SE Asia Standard Time" (
+    rem if internet available
+    if %internet% == 1 (
+      rem get hosts file and overwrite system hosts file
+      powershell -command "(new-object System.Net.WebClient).DownloadFile('%hostslink%', '%~dp0bin\hosts\hosts-download')"
 
-    rem update log file
-    echo Update Success from %hostsprovider% >> %~dp0\results\log
-  rem if disconnected
+      rem delete some ip detected as danger
+      findstr /v "52.215.192.131 www.status.streamable.com status.streamable.com" %~dp0bin\hosts\hosts-download > %SystemRoot%\System32\Drivers\etc\hosts
+
+      rem update log file
+      echo Update Success from %hostsprovider% >> %~dp0results\log
+    rem if disconnected
+    ) else (
+      rem get hosts file and overwrite system hosts file
+      copy %~dp0bin\hosts\hosts-patch %SystemRoot%\System32\Drivers\etc\hosts
+
+      rem update log file
+      echo Update Success >> %~dp0results\log
+    )
+    set hfs=Done
   ) else (
-    rem get hosts file and overwrite system hosts file
-    copy %~dp0\bin\hosts\hosts-patch %SystemRoot%\System32\Drivers\etc\hosts
-
-    rem update log file
-    echo Update Success >> %~dp0\results\log
+    rem if not match process skiped
+    set hfs=Skip
   )
 
-  set hfs=Done
   set ips=Flush DNS
   set run=fipsfls
   goto :main
@@ -240,10 +255,10 @@ rem close function
   ( 
     echo ________________________________________________________________________________
     echo Internet Protocol :
-  ) >> %~dp0\results\log 
+  ) >> %~dp0results\log 
   
   rem flush domain name server
-  ipconfig /flushdns >> %~dp0\results\log
+  ipconfig /flushdns >> %~dp0results\log
 
   set ips=Register DNS
   set run=fipsreg
@@ -252,7 +267,7 @@ rem close function
 
 :fipsreg (
   rem register new domain name server
-  ipconfig /registerdns >> %~dp0\results\log
+  ipconfig /registerdns >> %~dp0results\log
 
   set ips=Release IP
   set run=fipsrel
@@ -261,7 +276,7 @@ rem close function
 
 :fipsrel (
   rem release internet protocol
-  ipconfig /release >> %~dp0\results\log
+  ipconfig /release >> %~dp0results\log
 
   set ips=Renew IP
   set run=fipsnew
@@ -270,7 +285,7 @@ rem close function
 
 :fipsnew (
   rem renew internet protocol
-  ipconfig /renew >> %~dp0\results\log
+  ipconfig /renew >> %~dp0results\log
 
   set ips=Done
   set wss=Reset
@@ -283,9 +298,9 @@ rem close function
   ( 
     echo ________________________________________________________________________________
     echo Windows Sockets API :
-  ) >> %~dp0\results\log 
+  ) >> %~dp0results\log 
   rem run windows socket reset
-  netsh winsock reset >> %~dp0\results\log
+  netsh winsock reset >> %~dp0results\log
 
   set wss=Done
   set acs=Scan
@@ -298,16 +313,16 @@ rem close function
   ( 
     echo ________________________________________________________________________________
     echo Adware Cleaner :
-  ) >> %~dp0\results\log 
+  ) >> %~dp0results\log 
 
   rem run adware cleaner with auto clean and dont reboot
-  %~dp0\bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0\results
+  %~dp0bin\adwcleaner.exe /eula /clean /noreboot /path %~dp0results
 
   rem execution search
-  for /f "tokens=*" %%A in ('dir "%~dp0\results\AdwCleaner\Logs\*.txt" /B /S /O:D') do (SET "newestadwl=%%A")
+  for /f "tokens=*" %%A in ('dir "%~dp0results\AdwCleaner\Logs\*.txt" /B /S /O:D') do (SET "newestadwl=%%A")
 
   rem copy to log
-  type "%newestadwl%" >> %~dp0\results\log
+  type "%newestadwl%" >> %~dp0results\log
 
   set acs=Done
   set cos=Test
@@ -321,16 +336,16 @@ rem close function
     echo ________________________________________________________________________________
     echo Connection :
     echo.
-  ) >> %~dp0\results\log 
+  ) >> %~dp0results\log 
 
   rem check connection
   call :fchk
   if %internet% == 1 (
     rem clean run speedtest and accept license
-    %~dp0\bin\speedtest.exe --accept-license >> %~dp0\results\log
+    %~dp0bin\speedtest.exe --accept-license >> %~dp0results\log
     set cos=Done
   ) else (
-    echo Connection test skipped because it doesn't connect to the internet >> %~dp0\results\log
+    echo Connection test skipped because it doesn't connect to the internet >> %~dp0results\log
     set cos=Skip
   )   
   
@@ -345,7 +360,7 @@ rem close function
     echo ________________________________________________________________________________
     echo System Cleanup :
     echo.
-  ) >> %~dp0\results\log 
+  ) >> %~dp0results\log 
 
   rem delete temporary files
   del /s /f /q %windir%\temp\*.* >nul
@@ -379,7 +394,7 @@ rem close function
   md %homepath%\appdata\locallow\temp >nul
 
   rem update log file
-  echo System File Cleanup Success >> %~dp0\results\log
+  echo System File Cleanup Success >> %~dp0results\log
 
   set cln=Done
   set run=fend
@@ -393,19 +408,19 @@ rem close function
   ( 
     echo ________________________________________________________________________________
     echo Completed : %tcom%
-  ) >> %~dp0\results\log 
+  ) >> %~dp0results\log 
   
-  ren %~dp0\results\log "log %tcom%.txt"
+  ren %~dp0results\log "log %tcom%.txt"
   
   rem show popup dialog
   call :fpop "Select 'Yes' to restart computer now or 'No' to review report and restart later." "VBYesNo+VBQuestion" "Would you like to restart computer now ?"
   rem if No do view report
   if errorlevel 7 (
-    echo Restart Pending >> %~dp0\results\log
-    %~dp0\results\"log %tcom%.txt"
+    echo Restart Pending >> %~dp0results\log
+    %~dp0results\"log %tcom%.txt"
   rem if Yes do restart
   ) else if errorlevel 6 (
-    echo Restart Immediately >> %~dp0\results\log
+    echo Restart Immediately >> %~dp0results\log
     shutdown -t 0 -r -f
   )
 
