@@ -14,7 +14,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 
 <p align="center">
   <picture>
-    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/app.png" height="150" title="NetAnalyzer">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/app.png" title="NetAnalyzer App">
   </picture>
 </p>
 
