@@ -38,7 +38,6 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 ## When to use this ?
 - Wifi / Ethernet connected with No Internet
 - Strange ads appear when opening the browser
-- There is an unknown program installed
 - There is suspicious download activity from an unknown program
 - Internet is slow and some applications and web pages are inaccessible
 
