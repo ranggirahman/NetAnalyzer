@@ -71,17 +71,17 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 <p>
   <picture>
     <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/adwarecleaner-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/adwarecleaner.png" height="30">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/adwarecleaner.png" height="40">
   </picture>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <picture>
     <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/speedtestnet-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/speedtestnet.png" height="30">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/speedtestnet.png" height="40">
   </picture>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <picture>
     <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/bebasid-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/bebasid.png" height="30">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/bebasid.png" height="40">
   </picture>
 </p>
 
