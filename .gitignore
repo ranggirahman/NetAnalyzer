@@ -7,3 +7,4 @@ Release/backup
 Release/bin/hosts/hosts-download
 Release/results
 Release/*.zip
+Build/bin/hosts/hosts-download

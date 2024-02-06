@@ -6,9 +6,9 @@ cd /d %~dp0
 
 rem app properties
 rem if new version updated please edit resources/info too
-set ver=1.5.4
+set ver=1.5.6
 title "NetAnalyzer %ver%"
-set header=NetAnalyzer %ver% - https://github.com/ranggirahman
+set header=NetAnalyzer %ver% - github.com/ranggirahman
 set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/info.txt
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
