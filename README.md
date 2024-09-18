@@ -83,6 +83,11 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
     <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/bebasid-dark.png" media="(prefers-color-scheme: dark)">
     <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/bebasid.png" height="40">
   </picture>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <picture>
+    <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/googledns-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/googledns.png" height="40">
+  </picture>
 </p>
 
 <br />
