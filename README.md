@@ -19,7 +19,8 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 </p>
 
 ## Feature
-- Get Hardware Info
+- Hardware Info
+- Google DNS
 - Unblock some WEB (Indonesia Only)
 - Block some Ads Tracker (Indonesia Only)
 - Flush DNS
