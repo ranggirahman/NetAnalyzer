@@ -3,7 +3,7 @@
 <p align="center">
   <picture>
     <source srcset="https://raw.githubusercontent.com/ranggirahman/Trace/main/resources/icon-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/ranggirahman/Trace/main/resources/icon.png" height="150">
+    <img src="https://raw.githubusercontent.com/ranggirahman/Trace/main/resources/icon.png" height="100">
   </picture>
 </p>
 
