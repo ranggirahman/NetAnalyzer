@@ -7,13 +7,12 @@ cd /d %~dp0
 rem app properties
 rem if new version updated please edit resources/info too
 set ver=1.6.1
-title "NetAnalyzer %ver%"
-set header=NetAnalyzer %ver% - github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/info.txt
-set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
+title "Trace %ver%"
+set header=Trace %ver% - github.com/ranggirahman
+set verlink=https://raw.githubusercontent.com/ranggirahman/Trace/main/resources/info.txt
+set downloadlink=https://github.com/ranggirahman/Trace/releases
 
 rem display initial variable
-set hws=-
 set tad=-
 set gds=-
 set ips=-
@@ -24,28 +23,20 @@ set cos=-
 set cln=-
 set run=fini
 
-rem hosts file update
-set hostsprovider=BebasID
-set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw
-
 :main (
   rem main display
   cls
   echo.
-  echo    _   _        _                             _                        
-  echo   ^| \ ^| ^|      ^| ^|       /\                  ^| ^|                       
-  echo   ^|  \^| ^|  ___ ^| ^|_     /  \    _ __    __ _ ^| ^| _   _  ____ ___  _ __ 
-  echo   ^| . ` ^| / _ \^| __^|   / /\ \  ^| '_ \  / _` ^|^| ^|^| ^| ^| ^|^|_  // _ \^| '__^|
-  echo   ^| ^|\  ^|^|  __/^| ^|_   / ____ \ ^| ^| ^| ^|^| ^|_^| ^|^| ^|^| ^|_^| ^| / /^|  __/^| ^|   
-  echo   ^|_^| \_^| \___^| \__^| /_/    \_\^|_^| ^|_^| \__,_^|^|_^| \__, ^|/___^|\___^|^|_^|   
-  echo                                                   __/ ^|                
-  echo                                                  ^|___/   
+  echo  _____ ____      _    ____ _____     ______  
+  echo ^|_   _^|  _ \    / \  / ___^| ____^|    \     \ 
+  echo   ^| ^| ^| ^|_^| ^|  / _ \^| ^|   ^|  _^|       \     \
+  echo   ^| ^| ^|  _ /  / ___ \ ^|___^| ^|___      /     /
+  echo   ^|_^| ^|_^| \_\/_/   \_\____^|_____^|    /_____/ 
   echo ________________________________________________________________________________
   echo.
   echo   %header%
   echo ________________________________________________________________________________
   echo.
-  echo   Hardware              [%hws%] 
   echo   Time and Date         [%tad%]
   echo   Google DNS            [%gds%] 
   echo   Hosts                 [%hfs%]
@@ -94,7 +85,6 @@ rem close function
     echo Started : %date:/=-% %time::=-%
   ) > %~dp0results\log
 
-  set hws=Collect
   set run=fhws
   goto :main
 )
@@ -170,12 +160,8 @@ rem close function
   ) >> %~dp0results\log
 
   rem refresh time
-  w32tm /debug /disable >> %~dp0results\log
-  w32tm /unregister >> %~dp0results\log
-  w32tm /register >> %~dp0results\log
-  rem start service
-  net start w32time >> %~dp0results\log
-
+  w32tm /resync >> %~dp0results\log
+  
   set tad=Done
   set gds=Set
   set run=fgdn
