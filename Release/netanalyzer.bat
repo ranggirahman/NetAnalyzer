@@ -6,15 +6,16 @@ cd /d %~dp0
 
 rem app properties
 rem if new version updated please edit resources/info too
-set ver=1.5.4
+set ver=1.6.1
 title "NetAnalyzer %ver%"
-set header=NetAnalyzer %ver% - https://github.com/ranggirahman
+set header=NetAnalyzer %ver% - github.com/ranggirahman
 set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/info.txt
 set downloadlink=https://github.com/ranggirahman/NetAnalyzer/releases
 
 rem display initial variable
 set hws=-
 set tad=-
+set gds=-
 set ips=-
 set wss=-
 set hfs=-
@@ -45,7 +46,8 @@ set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resou
   echo ________________________________________________________________________________
   echo.
   echo   Hardware              [%hws%] 
-  echo   Time and Date         [%tad%] 
+  echo   Time and Date         [%tad%]
+  echo   Google DNS            [%gds%] 
   echo   Hosts                 [%hfs%]
   echo   Internet Protocol     [%ips%]
   echo   Windows Sockets API   [%wss%]
@@ -166,25 +168,34 @@ rem close function
     echo Computer Time and Date :
     echo.
   ) >> %~dp0results\log
-  
+
   rem refresh time
-  w32tm /unregister
-  w32tm /register
-
+  w32tm /debug /disable >> %~dp0results\log
+  w32tm /unregister >> %~dp0results\log
+  w32tm /register >> %~dp0results\log
   rem start service
-  net start w32time
-
-  rem use w32tm to force synchronization with the specified ntp server
-  w32tm /query /peers >> %~dp0results\log
-  sc config w32time start= auto >> %~dp0results\log
-  w32tm /config /manualpeerlist:%NTPServer% /syncfromflags:manual /reliable:YES /update >> %~dp0results\log
-
-  rem restart service and sync
-  net stop w32time
-  net start w32time
-  w32tm /resync /nowait >> %~dp0results\log
+  net start w32time >> %~dp0results\log
 
   set tad=Done
+  set gds=Set
+  set run=fgdn
+  goto :main
+)
+
+:fgdn (
+  rem update log file
+  ( 
+    echo ________________________________________________________________________________
+    echo Google DNS :
+    echo.
+  ) >> %~dp0results\log
+
+  rem set DNS
+  wmic nicconfig where (IPEnabled=TRUE) call SetDNSServerSearchOrder ("8.8.8.8", "8.8.4.4")
+
+  echo DNS updated to Google DNS >> %~dp0results\log
+
+  set gds=Done
   set hfs=Backup
   set run=fhfback
   goto :main
@@ -216,35 +227,13 @@ rem close function
 )
 
 :fhfud (
-  rem get timezone for location
-  for /f "delims=" %%i in ('tzutil /g') do set location=%%i
+  rem get hosts file and overwrite system hosts file
+  copy %~dp0bin\hosts\hosts-default %SystemRoot%\System32\Drivers\etc\hosts
 
-  rem if location match
-  if /i "%location%" equ "SE Asia Standard Time" (
-    rem if internet available
-    if %internet% == 1 (
-      rem get hosts file and overwrite system hosts file
-      powershell -command "(new-object System.Net.WebClient).DownloadFile('%hostslink%', '%~dp0bin\hosts\hosts-download')"
-
-      rem delete some ip detected as danger
-      findstr /v "52.215.192.131 www.status.streamable.com status.streamable.com" %~dp0bin\hosts\hosts-download > %SystemRoot%\System32\Drivers\etc\hosts
-
-      rem update log file
-      echo Update Success from %hostsprovider% >> %~dp0results\log
-    rem if disconnected
-    ) else (
-      rem get hosts file and overwrite system hosts file
-      copy %~dp0bin\hosts\hosts-patch %SystemRoot%\System32\Drivers\etc\hosts
-
-      rem update log file
-      echo Update Success >> %~dp0results\log
-    )
-    set hfs=Done
-  ) else (
-    rem if not match process skiped
-    set hfs=Skip
-  )
-
+  rem update log file
+  echo Update Success >> %~dp0results\log
+  
+  set hfs=Done
   set ips=Flush DNS
   set run=fipsfls
   goto :main

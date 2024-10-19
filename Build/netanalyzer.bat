@@ -6,7 +6,7 @@ cd /d %~dp0
 
 rem app properties
 rem if new version updated please edit resources/info too
-set ver=1.6.0
+set ver=1.6.1
 title "NetAnalyzer %ver%"
 set header=NetAnalyzer %ver% - github.com/ranggirahman
 set verlink=https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/info.txt
@@ -23,10 +23,6 @@ set acs=-
 set cos=-
 set cln=-
 set run=fini
-
-rem hosts file update
-set hostsprovider=BebasID
-set hostslink=https://raw.githubusercontent.com/bebasid/bebasid/master/dev/resources/hosts.sfw
 
 :main (
   rem main display
@@ -193,6 +189,8 @@ rem close function
   rem set DNS
   wmic nicconfig where (IPEnabled=TRUE) call SetDNSServerSearchOrder ("8.8.8.8", "8.8.4.4")
 
+  echo DNS updated to Google DNS >> %~dp0results\log
+
   set gds=Done
   set hfs=Backup
   set run=fhfback
@@ -225,35 +223,13 @@ rem close function
 )
 
 :fhfud (
-  rem get timezone for location
-  for /f "delims=" %%i in ('tzutil /g') do set location=%%i
+  rem get hosts file and overwrite system hosts file
+  copy %~dp0bin\hosts\hosts-default %SystemRoot%\System32\Drivers\etc\hosts
 
-  rem if location in Indonesia
-  if /i "%location%" equ "SE Asia Standard Time" (
-    rem if internet available
-    if %internet% == 1 (
-      rem get hosts file and overwrite system hosts file
-      powershell -command "(new-object System.Net.WebClient).DownloadFile('%hostslink%', '%~dp0bin\hosts\hosts-download')"
-
-      rem delete some ip detected as danger
-      findstr /v "52.215.192.131 www.status.streamable.com status.streamable.com" %~dp0bin\hosts\hosts-download > %SystemRoot%\System32\Drivers\etc\hosts
-
-      rem update log file
-      echo Update Success from %hostsprovider% >> %~dp0results\log
-    rem if disconnected
-    ) else (
-      rem get hosts file and overwrite system hosts file
-      copy %~dp0bin\hosts\hosts-patch %SystemRoot%\System32\Drivers\etc\hosts
-
-      rem update log file
-      echo Update Success >> %~dp0results\log
-    )
-    set hfs=Done
-  ) else (
-    rem if not match process skiped
-    set hfs=Skip
-  )
-
+  rem update log file
+  echo Update Success >> %~dp0results\log
+  
+  set hfs=Done
   set ips=Flush DNS
   set run=fipsfls
   goto :main

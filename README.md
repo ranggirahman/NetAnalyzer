@@ -2,7 +2,8 @@
 
 <p align="center">
   <picture>
-    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/icon.png" height="150" title="NetAnalyzer">
+    <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/icon-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/icon.png" height="150">
   </picture>
 </p>
 
@@ -21,8 +22,6 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 ## Feature
 - Hardware Info
 - Google DNS
-- Unblock some WEB (Indonesia Only)
-- Block some Ads Tracker (Indonesia Only)
 - Flush DNS
 - Register DNS
 - IP Release
@@ -78,11 +77,6 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
   <picture>
     <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/speedtestnet-dark.png" media="(prefers-color-scheme: dark)">
     <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/speedtestnet.png" height="40">
-  </picture>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <picture>
-    <source srcset="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/bebasid-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/ranggirahman/NetAnalyzer/main/resources/bebasid.png" height="40">
   </picture>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <picture>
