@@ -42,7 +42,7 @@ Conduct thorough Connection Tests to evaluate network stability and performance.
 
 ## How to use
 1. Download Trace.rar latest version below
-2. Extract .rar on your computer then run Trace.bat
+2. Extract .rar/.zip on your computer then run Trace.bat
 3. Confirm the admin popup if necessary, then press Enter to start the process
 4. Wait until all process Done. If possible, restart the computer immediately afterwards
 
