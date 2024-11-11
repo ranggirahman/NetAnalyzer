@@ -6,11 +6,12 @@ cd /d %~dp0
 
 rem app properties
 rem if new version updated please edit resources/info too
-set ver=1.6.1
-title "Trace %ver%"
-set header=Trace %ver% - github.com/ranggirahman
-set verlink=https://raw.githubusercontent.com/ranggirahman/Trace/main/resources/info.txt
-set downloadlink=https://github.com/ranggirahman/Trace/releases
+set ver=1.6.2
+set name=Trace
+title "%name% %ver%"
+set header=%name% %ver% - github.com/ranggirahman/%name%
+set verlink=https://raw.githubusercontent.com/ranggirahman/%name%/main/resources/info.txt
+set downloadlink=https://github.com/ranggirahman/%name%/releases
 
 rem display initial variable
 set tad=-
@@ -176,8 +177,12 @@ rem close function
     echo.
   ) >> %~dp0results\log
 
-  rem set DNS
-  wmic nicconfig where (IPEnabled=TRUE) call SetDNSServerSearchOrder ("8.8.8.8", "8.8.4.4")
+  rem set ipv4 DNS
+  powershell -Command "Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | ForEach-Object { Set-DnsClientServerAddress -InterfaceAlias $_.Name -ServerAddresses ('8.8.8.8', '8.8.4.4') }"
+
+
+  rem set ipv6 DNS
+  powershell -Command "Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | ForEach-Object { Set-DnsClientServerAddress -InterfaceAlias $_.Name -ServerAddresses ('2001:4860:4860::8888', '2001:4860:4860::8844') }"
 
   echo DNS updated to Google DNS >> %~dp0results\log
 

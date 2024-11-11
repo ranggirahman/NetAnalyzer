@@ -1,5 +1,12 @@
-Product Name : NetAnalyzer
-Latest Version : 1.6.1
+Product Name : Trace
+Latest Version : 1.6.2
 Description : Network Tools
 Company : https://github.com/ranggirahman
-Copyright : @ 2024
+Copyright : @ 2022 - 2024
+
+Changelog :
+- Change DNS Method
+
+Known Issue :
+- In some ISP (ex Biznet) block using DNS Google make cant connect to internet
+- Speedtest not work cause above reason maybe
